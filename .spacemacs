@@ -358,7 +358,7 @@ you should place your code here."
   (evil-leader/set-key
     "`" 'winum-select-window-0
     "Da" 'docker-container-shell
-    "bq" 'kill-buffer-and-window
+    "bk" 'kill-buffer-and-window
     "fet" 'dotspacemacs/test-dotfile
     "bl" 'list-buffers
     )
