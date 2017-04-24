@@ -364,6 +364,9 @@ you should place your code here."
     "bl" 'list-buffers
     )
 
+  ;; On-load toggles
+  (toggle-truncate-lines)
+
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
   ;; $ git ls-files --others --ignored --exclude-standard --directory
