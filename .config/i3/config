@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
 
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume $sink -2%
@@ -86,10 +87,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+t floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+t focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
