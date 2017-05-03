@@ -10,7 +10,6 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
 
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume $sink -2%
@@ -198,3 +197,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3blocks
 }
+
+exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
+exec "synclient TouchpadOff=1"
+exec "gxkb"
