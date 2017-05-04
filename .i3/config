@@ -205,5 +205,5 @@ bar {
 }
 
 exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
-exec "synclient TouchpadOff=1"
+exec_always "synclient TouchpadOff=1"
 exec "gxkb"
