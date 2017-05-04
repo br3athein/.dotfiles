@@ -9,6 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+set $alt Mod1
 set $mod Mod4
 
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
@@ -97,6 +98,10 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+# cycle workspaces
+bindsym $alt+Tab workspace next
+bindsym $alt+Shift+Tab workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace 1
