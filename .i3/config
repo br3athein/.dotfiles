@@ -115,8 +115,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # cycle workspaces
-bindsym $alt+Tab workspace next
 bindsym $alt+Shift+Tab workspace prev
+bindsym $alt+Tab workspace next
+bindsym $mod+comma workspace prev
+bindsym $mod+period workspace next
 
 # workspace names
 set $ws1 "1"
