@@ -243,3 +243,5 @@ bar {
 exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
 exec_always "synclient TouchpadOff=1"
 exec "gxkb"
+
+exec_always i3-msg workspace $ws0
