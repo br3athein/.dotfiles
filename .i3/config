@@ -20,6 +20,9 @@ set $inactive-text-color #676e7d
 set $urgent-bg-color     #e53935
 set $selection-color     #9575cd
 
+# preferrable terminal
+set $terminal i3-sensible-terminal
+
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -2%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +2%
@@ -47,7 +50,8 @@ hide_edge_borders both
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $terminal
+bindsym $mod+KP_Enter exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+r kill
