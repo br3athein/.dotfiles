@@ -252,8 +252,10 @@ bar {
         font pango:Source Code Pro 10
 }
 
-exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
+# startup
 exec_always "synclient TouchpadOff=1"
+exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
 exec "gxkb"
 
 exec_always i3-msg workspace $ws0
+exec --no-startup-id compton -f
