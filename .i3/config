@@ -63,8 +63,14 @@ bindsym Print exec "scrot $scrot-file && xclip -selection clipboard -t image/png
 bindsym $mod+Shift+r kill
 bindsym $mod+BackSpace kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start a program launcher
+bindsym $mod+d exec "rofi -show run -lines 3 -eh 2 -width 100 -line-margin 17 -padding 320 -opacity 85 -bw 0 -separator-style none \
+-color-window '$bg-color, #00ff00, $bg-color' \
+-color-normal '$bg-color, $text-color, $bg-color, $bg-color, $selection-color' \
+-color-active '$bg-color, $text-color, $bg-color, $bg-color, $bg-color' \
+-color-urgent '$bg-color, $text-color, $urgent-bg-color, $text-color, $bg-color' \
+-font 'System San Francisco Display 15'"
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
