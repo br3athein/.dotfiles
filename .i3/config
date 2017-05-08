@@ -147,6 +147,11 @@ set $ws7 "7:7"
 set $ws8 "8:8"
 set $ws9 "9:"
 
+# application workspace assignments
+assign [class="Emacs24"] $ws2
+assign [class="Rhythmbox"] $ws4
+assign [class="Skype"] $ws9
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
