@@ -237,7 +237,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # finds out, if available)
 bar {
         status_command i3blocks
-        font pango:Terminus 10
+        font pango:Source Code Pro 10
 }
 
 exec "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
