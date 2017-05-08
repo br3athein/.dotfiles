@@ -23,6 +23,9 @@ set $selection-color     #9575cd
 # preferrable terminal
 set $terminal i3-sensible-terminal
 
+# latest screenshot location
+set $scrot-file /tmp/scrot-latest.png
+
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -2%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +2%
@@ -52,6 +55,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec $terminal
 bindsym $mod+KP_Enter exec $terminal
+
+# take a screenshot
+bindsym Print exec "scrot $scrot-file && xclip -selection clipboard -t image/png -i $scrot-file"
 
 # kill focused window
 bindsym $mod+Shift+r kill
