@@ -136,16 +136,16 @@ bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next
 
 # workspace names
-set $ws0 "0"
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws0 "0:"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:3"
+set $ws4 "4:"
+set $ws5 "5:5"
+set $ws6 "6:6"
+set $ws7 "7:7"
+set $ws8 "8:8"
+set $ws9 "9:"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -253,6 +253,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 bar {
     status_command i3blocks
     font pango:Source Code Pro 10
+    strip_workspace_numbers yes
     colors {
         background $bg-color
         separator #757575
