@@ -26,6 +26,9 @@ set $terminal i3-sensible-terminal
 # latest screenshot location
 set $scrot-file /tmp/scrot-latest.png
 
+# wallpaper
+set $wallpaper /home/br3athein/Pictures/Wallpapers/aperture.jpg
+
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -2%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +2%
@@ -262,6 +265,7 @@ bar {
 
 # startup
 exec_always "synclient TouchpadOff=1"
+exec_always --no-startup-id feh --bg-scale $wallpaper
 exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
 exec "gxkb"
 
