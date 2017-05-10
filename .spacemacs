@@ -364,6 +364,8 @@ you should place your code here."
     "bl" 'list-buffers
     )
 
+  ;; Enable spellchecking while committing
+  (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
