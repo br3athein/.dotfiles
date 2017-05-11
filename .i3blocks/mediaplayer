@@ -42,6 +42,8 @@ if ($player_arg eq '' or $player_arg =~ /cmus$/) {
     # try cmus first
     my @cmus = split /^/, qx(cmus-remote -Q);
     if ($? == 0) {
+        my @status = split /\s/, shift @cmus;
+        @metadata[2] = @status[1] eq 'playing'? '' : '';
         foreach my $line (@cmus) {
             my @data = split /\s/, $line;
             if (shift @data eq 'tag') {
