@@ -203,7 +203,7 @@ values."
    dotspacemacs-retain-visual-state-on-shift t
    ;; If non-nil, J and K move lines up and down when in visual mode.
    ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
+   dotspacemacs-visual-line-move-text t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
@@ -283,8 +283,9 @@ values."
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
    ;; Control line numbers activation.
-   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
-   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode'
+   ;; and `text-mode' derivatives.
+   ;; If set to `relative', line numbers are relative.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
    ;;   :disabled-for-modes dired-mode
@@ -371,7 +372,8 @@ you should place your code here."
   ;; Command to list ignored files:
   ;; $ git ls-files --others --ignored --exclude-standard --directory
   (defun magit-ignored-files ()
-    (magit-git-items "ls-files" "--others" "--ignored" "--exclude-standard" "-z" "--directory"))
+    (magit-git-items
+     "ls-files" "--others" "--ignored" "--exclude-standard" "-z" "--directory"))
 
   (defun magit-insert-ignored-files ()
     (-when-let (files (magit-ignored-files))
@@ -380,7 +382,8 @@ you should place your code here."
         (magit-insert-un/tracked-files-1 files nil)
         (insert ?\n))))
 
-  (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+  (magit-add-section-hook
+   'magit-status-sections-hook 'magit-insert-ignored-files nil t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
