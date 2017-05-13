@@ -364,8 +364,6 @@ you should place your code here."
     "bl" 'list-buffers
     )
 
-  ;; Enable spellchecking while committing
-  (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
@@ -383,6 +381,7 @@ you should place your code here."
 
   (magit-add-section-hook
    'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+  (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
