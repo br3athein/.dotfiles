@@ -379,6 +379,7 @@ you should place your code here."
         (magit-insert-un/tracked-files-1 files nil)
         (insert ?\n))))
 
+  ;; Custom hooks
   (magit-add-section-hook
    'magit-status-sections-hook 'magit-insert-ignored-files nil t)
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
