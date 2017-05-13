@@ -381,6 +381,7 @@ you should place your code here."
 
   (magit-add-section-hook
    'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+  (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   )
 
