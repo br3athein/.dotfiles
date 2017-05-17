@@ -384,6 +384,21 @@ you should place your code here."
    'magit-status-sections-hook 'magit-insert-ignored-files nil t)
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
+
+  ;; Launch diff on currently selected buffers - still WIP
+  (defun diff-current-layout ()
+    (setq
+        current-layout-buffers (mapcar 'window-buffer (window-list)))
+    (ediff-buffers
+     (car current-layout-buffers)
+     (cadr current-layout-buffers)
+     )
+   )
+
+  (evil-leader/set-key
+    (kbd "b C-d")
+    (lambda () (interactive "") (diff-current-layout))
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
