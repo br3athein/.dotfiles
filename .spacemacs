@@ -73,6 +73,7 @@ values."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
+          magit-revision-show-gravatars t
           magit-save-repository-buffers 'dontask)
      version-control
      org
