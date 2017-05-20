@@ -362,6 +362,7 @@ you should place your code here."
     "bk" 'kill-buffer-and-window
     "fet" 'dotspacemacs/test-dotfile
     "bl" 'list-buffers
+    "b C-r" 'rename-buffer
     )
 
   ;; Adding section "Ignored files" to Magit
