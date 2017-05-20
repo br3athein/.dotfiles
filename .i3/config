@@ -63,7 +63,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+KP_Enter exec $terminal
 
 # take a screenshot
-bindsym Print exec "scrot $scrot-file && xclip -selection clipboard -t image/png -i $scrot-file"
+bindsym Print exec /home/br3athein/.i3/take-a-screenshot.sh
 
 # kill focused window
 bindsym $mod+Shift+r kill
