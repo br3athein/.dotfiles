@@ -79,7 +79,7 @@ values."
      org
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
-     semantic
+     ;; semantic
      syntax-checking
 
      (ranger :variables
