@@ -356,6 +356,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Mode toggles
+  (spacemacs/enable-transparency)
+  (setq word-wrap t)
+
   ;; Custom binds
   (evil-leader/set-key
     "`" 'winum-select-window-0
