@@ -392,17 +392,15 @@ you should place your code here."
 
   ;; Launch diff on currently selected buffers - still WIP
   (defun diff-current-layout ()
-    (setq
-        current-layout-buffers (mapcar 'window-buffer (window-list)))
+    (interactive)
+    (let ((current-layout-buffers (mapcar 'window-buffer (window-list))))
     (ediff-buffers
      (car current-layout-buffers)
-     (cadr current-layout-buffers)
-     )
-   )
+     (cadr current-layout-buffers))))
 
+  ;; Binds for own defuns
   (evil-leader/set-key
-    (kbd "b C-d")
-    (lambda () (interactive "") (diff-current-layout))
+    (kbd "b C-d") 'diff-current-layout
     )
   )
 
