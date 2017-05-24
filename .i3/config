@@ -257,7 +257,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3blocks
+    status_command i3blocks -c /home/br3athein/.i3blocks.conf
     # font pango:Source Code Pro 10
     strip_workspace_numbers yes
     colors {
