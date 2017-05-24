@@ -84,6 +84,8 @@ values."
 
      (ranger :variables
              ranger-show-preview t
+             ranger-toggle-literal t
+             ranger-parent-depth 0
              ranger-cleanup-eagerly t)
      )
    ;; List of additional packages that will be installed without being
