@@ -29,10 +29,12 @@ set $scrot-file /tmp/scrot-latest.png
 # wallpaper
 set $wallpaper /home/br3athein/Pictures/Wallpapers/aperture.jpg
 
+# volume controls
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -2%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +2%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
 
+# player controls
 bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
 bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
 bindsym XF86AudioPlay exec --no-startup-id cmus-remote -u
