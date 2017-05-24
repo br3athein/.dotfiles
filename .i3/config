@@ -183,17 +183,6 @@ bindsym $mod+p workspace $ws4
 bindsym $mod+n workspace $ws5
 bindsym $mod+m workspace $ws6
 
-bindsym $mod+KP_1 workspace $ws1
-bindsym $mod+KP_2 workspace $ws2
-bindsym $mod+KP_3 workspace $ws3
-bindsym $mod+KP_4 workspace $ws4
-bindsym $mod+KP_5 workspace $ws5
-bindsym $mod+KP_6 workspace $ws6
-bindsym $mod+KP_7 workspace $ws7
-bindsym $mod+KP_8 workspace $ws8
-bindsym $mod+KP_9 workspace $ws9
-bindsym $mod+KP_0 workspace $ws0
-
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
