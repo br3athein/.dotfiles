@@ -21,7 +21,7 @@ set $urgent-bg-color     #e53935
 set $selection-color     #9575cd
 
 # preferrable terminal
-set $terminal i3-sensible-terminal
+set $terminal urxvt
 
 # latest screenshot location
 set $scrot-file /tmp/scrot-latest.png
