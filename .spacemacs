@@ -377,7 +377,8 @@ you should place your code here."
   ;; $ git ls-files --others --ignored --exclude-standard --directory
   (defun magit-ignored-files ()
     (magit-git-items
-     "ls-files" "--others" "--ignored" "--exclude-standard" "-z" "--directory"))
+     "ls-files" "--others" "--ignored" "-z"
+     "--exclude-standard" "--directory"))
 
   (defun magit-insert-ignored-files ()
     (-when-let (files (magit-ignored-files))
