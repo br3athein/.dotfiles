@@ -153,9 +153,16 @@ set $ws8 "8:"
 set $ws9 "9:"
 
 # application workspace assignments
+assign [class="Google-chrome"] $ws1
 assign [class="Emacs24"] $ws2
 assign [class="Rhythmbox"] $ws4
-assign [class="Skype"] $ws9
+assign [class="Soundnode"] $ws4
+assign [class="Nautilus"] $ws5
+assign [class="Pinta"] $ws6
+assign [class="libreoffice-calc"] $ws7
+assign [class="skypeforlinux"] $ws9
+assign [class="Telegram"] $ws9
+assign [class="Thunderbird"] $ws9
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
