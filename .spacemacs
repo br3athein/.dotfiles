@@ -405,6 +405,12 @@ you should place your code here."
   (evil-leader/set-key
     (kbd "b C-d") 'diff-current-layout
     )
+
+  ;; Disable strange 'new' feature
+  ;; seems like `electric-indent-mode' belongs to vanilla Emacs solely and is
+  ;; used only to insert an linefeed without indenting a new line.
+  ;; However, here in Spacemacs, I'd like to use indentation by default.
+  (setq electric-indent-mode nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
