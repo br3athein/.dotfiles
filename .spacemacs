@@ -41,7 +41,7 @@ values."
      pdf-tools
      (ranger :variables
              ranger-show-preview t
-             ranger-toggle-literal t
+             ranger-show-literal nil
              ranger-parent-depth 0
              ranger-cleanup-eagerly t)
      ;; semantic
