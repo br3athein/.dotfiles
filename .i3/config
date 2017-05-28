@@ -149,7 +149,7 @@ set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
-set $ws8 "8:"
+set $ws8 "8:"
 set $ws9 "9:"
 
 # application workspace assignments
@@ -160,6 +160,7 @@ assign [class="Soundnode"] $ws4
 assign [class="Nautilus"] $ws5
 assign [class="Pinta"] $ws6
 assign [class="libreoffice-calc"] $ws7
+assign [class="Steam"] $ws8
 assign [class="skypeforlinux"] $ws9
 assign [class="Telegram"] $ws9
 assign [class="Thunderbird"] $ws9
