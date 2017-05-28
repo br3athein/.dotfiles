@@ -31,28 +31,31 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ;; Look&feel
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
 
-     sql
-     (shell :variables
-            shell-default-height '30
-            shell-default-position 'bottom
-            shell-default-shell 'ansi-term
-            shell-enable-smart-eshell 't
-            shell-protect-eshell-prompt 't)
-     docker
+     ;; Tools
      chrome
+     docker
      pdf-tools
+     (ranger :variables
+             ranger-show-preview t
+             ranger-toggle-literal t
+             ranger-parent-depth 0
+             ranger-cleanup-eagerly t)
+     ;; semantic
 
+     ;; Languages
      csharp
+     csv
      html
      javascript
-     csv
-     markdown
-     yaml
      nginx
      python
+     sql
+     vimscript
+     yaml
 
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -65,28 +68,25 @@ values."
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-snippets-in-popup 't
                       auto-completion-complete-with-key-sequence "jk"
-                      auto-completion-enable-help-tooltip 'manual
-                      )
+                      auto-completion-enable-help-tooltip 'manual)
      better-defaults
-     ;; themes-megapack
-
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t
           magit-revision-show-gravatars t
           magit-save-repository-buffers 'dontask)
-     version-control
+     markdown
      org
+     (shell :variables
+            shell-default-height '30
+            shell-default-position 'bottom
+            shell-default-shell 'ansi-term
+            shell-enable-smart-eshell 't
+            shell-protect-eshell-prompt 't)
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
-     ;; semantic
      syntax-checking
-
-     (ranger :variables
-             ranger-show-preview t
-             ranger-toggle-literal t
-             ranger-parent-depth 0
-             ranger-cleanup-eagerly t)
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
