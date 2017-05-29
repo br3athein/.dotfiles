@@ -279,4 +279,8 @@ exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:win_space_toggle'"
 exec --no-startup-id nm-applet
 exec --no-startup-id "gxkb"
 
+exec --no-startup-id i3-msg "workspace $ws9; layout tabbed"
+exec --no-startup-id skypeforlinux
+exec --no-startup-id telegram
+
 exec --no-startup-id i3-msg workspace $ws0
