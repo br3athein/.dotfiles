@@ -145,7 +145,7 @@ set $ws0 "0:"
 set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
-set $ws4 "4:"
+set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
@@ -157,6 +157,7 @@ assign [class="Google-chrome"] $ws1
 assign [class="Emacs24"] $ws2
 assign [class="Rhythmbox"] $ws4
 assign [class="Soundnode"] $ws4
+assign [class="Spotify"] $ws4
 assign [class="Nautilus"] $ws5
 assign [class="Pinta"] $ws6
 assign [class="libreoffice-calc"] $ws7
@@ -280,6 +281,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id "gxkb"
 
 exec --no-startup-id i3-msg "workspace $ws9; layout tabbed"
+exec --no-startup-id i3-msg workspace $ws4; exec --no-startup-id spotify
 exec --no-startup-id skypeforlinux
 exec --no-startup-id telegram
 
