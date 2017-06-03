@@ -157,7 +157,6 @@ assign [class="Google-chrome"] $ws1
 assign [class="Emacs"] $ws2
 assign [class="Rhythmbox"] $ws4
 assign [class="Soundnode"] $ws4
-assign [class="Spotify"] $ws4
 assign [class="Nautilus"] $ws5
 assign [class="Pinta"] $ws6
 assign [class="libreoffice-calc"] $ws7
@@ -165,6 +164,8 @@ assign [class="Steam"] $ws8
 assign [class="skypeforlinux"] $ws9
 assign [class="Telegram"] $ws9
 assign [class="Thunderbird"] $ws9
+
+for_window [class="Spotify"] move to workspace $ws4
 
 # switch to workspace
 bindsym $mod+u workspace $ws1
@@ -258,7 +259,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id "gxkb"
 
 exec --no-startup-id i3-msg "workspace $ws9; layout tabbed"
-exec --no-startup-id i3-msg workspace $ws4; exec --no-startup-id spotify
+exec --no-startup-id spotify
 exec --no-startup-id skypeforlinux
 exec --no-startup-id telegram
 
