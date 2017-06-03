@@ -154,7 +154,7 @@ set $ws9 "9:"
 
 # application workspace assignments
 assign [class="Google-chrome"] $ws1
-assign [class="Emacs24"] $ws2
+assign [class="Emacs"] $ws2
 assign [class="Rhythmbox"] $ws4
 assign [class="Soundnode"] $ws4
 assign [class="Spotify"] $ws4
