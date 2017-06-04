@@ -34,6 +34,7 @@ values."
      ;; Look&feel
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
+     emoji
 
      ;; Tools
      chrome
