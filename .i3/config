@@ -260,7 +260,7 @@ exec --no-startup-id "gxkb"
 
 exec --no-startup-id i3-msg "workspace $ws9; layout tabbed"
 exec --no-startup-id spotify
-exec --no-startup-id skypeforlinux
 exec --no-startup-id telegram
+exec --no-startup-id skypeforlinux
 
 exec --no-startup-id i3-msg workspace $ws0
