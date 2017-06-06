@@ -60,8 +60,16 @@ URxvt*scrollBar: false
 
 URxvt*termName: xterm-color
 ! URxvt*perl-ext:
-URxvt*perl-ext-common: default,xkr-clipboard
-! URxvt*keysym
+URxvt*perl-ext-common: default,clipboard
+
+URxvt.iso14755: False
+URxvt.iso14755_52: False
+
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 URxvt*color0         : _color0
 URxvt*color1         : _color1
