@@ -44,7 +44,7 @@ values."
              ranger-show-preview t
              ranger-show-literal nil
              ranger-parent-depth 0
-             ranger-cleanup-eagerly t)
+             ranger-cleanup-on-disable t)
      ;; semantic
 
      ;; Languages
