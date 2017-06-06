@@ -40,6 +40,7 @@ values."
      chrome
      docker
      pdf-tools
+     prodigy
      (ranger :variables
              ranger-show-preview t
              ranger-show-literal nil
