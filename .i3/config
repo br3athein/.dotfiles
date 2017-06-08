@@ -13,10 +13,10 @@ set $alt Mod1
 set $mod Mod4
 
 # initialize colors
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676e7d
+set $bg-color            #030e21
+set $inactive-bg-color   #030e21
+set $text-color          #9ab3e2
+set $inactive-text-color #465163
 set $urgent-bg-color     #e53935
 set $selection-color     #9575cd
 
@@ -27,7 +27,7 @@ set $terminal urxvt
 set $scrot-file /tmp/scrot-latest.png
 
 # wallpaper
-set $wallpaper /home/br3athein/Pictures/Wallpapers/aperture.jpg
+set $wallpaper /home/br3athein/Pictures/Wallpapers/mountain-glow.jpg
 
 # volume controls
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -2%
