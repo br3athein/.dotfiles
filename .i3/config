@@ -74,10 +74,10 @@ bindsym $mod+BackSpace kill
 
 # start a program launcher
 bindsym $mod+d exec "rofi -show run -lines 3 -eh 2 -width 100 -line-margin 17 -padding 320 -opacity 85 -bw 0 -separator-style none \
--color-window '$bg-color, #00ff00, $bg-color' \
--color-normal '$bg-color, $text-color, $bg-color, $bg-color, $selection-color' \
--color-active '$bg-color, $text-color, $bg-color, $bg-color, $bg-color' \
--color-urgent '$bg-color, $text-color, $urgent-bg-color, $text-color, $bg-color' \
+-color-window '$bg_color, #00ff00, $bg_color' \
+-color-normal '$bg_color, $text_color, $bg_color, $bg_color, $selection_color' \
+-color-active '$bg_color, $text_color, $bg_color, $bg_color, $bg_color' \
+-color-urgent '$bg_color, $text_color, $urgent_bg_color, $text_color, $bg_color' \
 -font 'System San Francisco Display 15'"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
