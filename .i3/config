@@ -16,9 +16,9 @@ set $mod Mod4
 # initialize colors
 set $bg_color            #030e21
 set $inactive_bg_color   #030e21
+set $urgent_bg_color     #e53935
 set $text_color          #9ab3e2
 set $inactive_text_color #465163
-set $urgent_bg_color     #e53935
 set $selection_color     #9575cd
 
 # preferrable terminal
