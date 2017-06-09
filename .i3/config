@@ -19,6 +19,7 @@ set $inactive_bg_color   #030e21
 set $urgent_bg_color     #e53935
 set $text_color          #9ab3e2
 set $inactive_text_color #465163
+set $urgent_text_color   #f3f4f5
 set $selection_color     #9575cd
 
 # preferrable terminal
@@ -247,7 +248,7 @@ bar {
         # status           # border           # background       # text
         focused_workspace  $bg_color          $bg_color          $text_color
         inactive_workspace $inactive_bg_color $inactive_bg_color $inactive_text_color
-        urgent_workspace   $urgent_bg_color   $urgent_bg_color   $text_color
+        urgent_workspace   $urgent_bg_color   $urgent_bg_color   $urgent_text_color
     }
 }
 
