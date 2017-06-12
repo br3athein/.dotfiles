@@ -372,6 +372,7 @@ you should place your code here."
     "fet" 'dotspacemacs/test-dotfile
     "bl" 'list-buffers
     "b C-r" 'rename-buffer
+    "fi" 'evil-show-file-info
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
