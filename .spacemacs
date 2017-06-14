@@ -377,6 +377,10 @@ you should place your code here."
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
+  (define-key magit-log-mode-map (kbd "J")
+    '(lambda () (interactive) (forward-line 10)))
+  (define-key magit-log-mode-map (kbd "K")
+    '(lambda () (interactive) (forward-line -10)))
 
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
