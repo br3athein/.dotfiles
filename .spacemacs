@@ -377,6 +377,8 @@ you should place your code here."
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
+
+  ;; Simplify navigation in magit-log-mode
   (define-key magit-log-mode-map (kbd "J")
     '(lambda () (interactive) (forward-line 10)))
   (define-key magit-log-mode-map (kbd "K")
