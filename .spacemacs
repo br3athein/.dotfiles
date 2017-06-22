@@ -420,9 +420,9 @@ you should place your code here."
   (defun diff-current-layout ()
     (interactive)
     (let ((current-layout-buffers (mapcar 'window-buffer (window-list))))
-    (ediff-buffers
-     (car current-layout-buffers)
-     (cadr current-layout-buffers))))
+      (ediff-buffers
+       (car current-layout-buffers)
+       (cadr current-layout-buffers))))
 
   ;; Binds for own defuns
   (evil-leader/set-key
