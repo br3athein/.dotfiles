@@ -364,6 +364,7 @@ you should place your code here."
   ;; Mode toggles
   (spacemacs/enable-transparency)
   (setq-default word-wrap t
+                truncate-lines t
                 )
 
   ;; Custom binds
