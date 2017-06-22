@@ -363,7 +363,8 @@ you should place your code here."
 
   ;; Mode toggles
   (spacemacs/enable-transparency)
-  (setq word-wrap t)
+  (setq-default word-wrap t
+                )
 
   ;; Custom binds
   (evil-leader/set-key
