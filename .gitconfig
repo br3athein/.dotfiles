@@ -1,0 +1,34 @@
+[user]
+	email = br3athein@gmail.com
+	name = br3athein
+	signingkey = 7C7043E3CEE78490
+[push]
+	default = simple
+[alias]
+	rc = rebase --continue
+	mt = mergetool
+	hist = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph
+	tsih = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --reverse
+	ha = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph --all
+	unstage = reset HEAD --
+
+	legacy-hist = log --pretty=oneline --graph
+[credential]
+	helper = cache --timeout=3600
+[mergetool.ediff]
+	cmd = emacsclient --eval \"\
+(progn\
+	(defun ediff-write-merge-buffer ()\
+		(let ((file ediff-merge-store-file))\
+			(set-buffer ediff-buffer-C)\
+			(write-region (point-min) (point-max) file)\
+			(message \\\"Merge buffer saved in: %s\\\" file)\
+			(set-buffer-modified-p nil)\
+			(sit-for 1)))\
+	(setq ediff-quit-merge-hook 'ediff-write-merge-buffer)\
+	(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\"\
+																		 \\\"$BASE\\\" nil \\\"$MERGED\\\"))\"
+[merge]
+	tool = ediff
+[column]
+	status = always
