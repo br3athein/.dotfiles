@@ -84,6 +84,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias py2="python2"
+alias py3="python3"
+
 DEFAULT_USER=br3athein
 
 prompt_context() {
