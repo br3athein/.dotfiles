@@ -363,6 +363,7 @@ you should place your code here."
 
   ;; Mode toggles
   (spacemacs/enable-transparency)
+  (spaceline-toggle-minor-modes-off)
   (setq-default word-wrap t
                 truncate-lines t
                 )
