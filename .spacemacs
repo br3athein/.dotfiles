@@ -38,7 +38,9 @@ values."
 
      ;; Tools
      chrome
+     csv
      docker
+     nginx
      pdf-tools
      prodigy
      (ranger :variables
@@ -50,10 +52,8 @@ values."
 
      ;; Languages
      csharp
-     csv
      html
      javascript
-     nginx
      python
      sql
      vimscript
