@@ -12,7 +12,6 @@
 	rc = rebase --continue
 	mt = mergetool
 	hist = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph
-	tsih = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --reverse
 	ha = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph --all
 	unstage = reset HEAD --
 
