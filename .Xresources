@@ -69,9 +69,6 @@ URxvt.iso14755_52: False
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-
 URxvt*color0         : _color0
 URxvt*color1         : _color1
 URxvt*color2         : _color2
