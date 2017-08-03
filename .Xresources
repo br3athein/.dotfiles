@@ -61,7 +61,7 @@ URxvt*scrollBar: false
 
 URxvt*termName: xterm-color
 ! URxvt*perl-ext:
-URxvt*perl-ext-common: default,clipboard
+URxvt*perl-ext-common: default,clipboard,selection-to-clipboard
 
 URxvt.iso14755: False
 URxvt.iso14755_52: False
