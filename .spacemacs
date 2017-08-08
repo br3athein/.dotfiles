@@ -419,6 +419,14 @@ you should place your code here."
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-indent-guide-off)
   (add-hook 'magit-blame-mode-hook 'spacemacs/toggle-indent-guide-off)
 
+  ;; Navigation through HELM
+  (require 'helm-files)
+
+  (add-hook 'helm-mode-hook
+            (lambda ()
+              (define-key helm-map (kbd "C-p") 'helm-previous-page)
+              (define-key helm-map (kbd "C-n") 'helm-next-page)))
+
   ;; Launch diff on currently selected buffers - still WIP
   (defun diff-current-layout ()
     (interactive)
