@@ -383,15 +383,15 @@ you should place your code here."
 
   ;; Simplify navigation in magit-log-mode
   (define-key magit-log-mode-map (kbd "J")
-    '(lambda () (interactive) (forward-line 10)))
+    (lambda () (interactive) (forward-line 10)))
   (define-key magit-log-mode-map (kbd "K")
-    '(lambda () (interactive) (forward-line -10)))
+    (lambda () (interactive) (forward-line -10)))
 
   ;; Same applies to Buffer-list-mode
   (define-key Buffer-menu-mode-map (kbd "J")
-    '(lambda () (interactive) (forward-line 10)))
+    (lambda () (interactive) (forward-line 10)))
   (define-key Buffer-menu-mode-map (kbd "K")
-    '(lambda () (interactive) (forward-line -10)))
+    (lambda () (interactive) (forward-line -10)))
 
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
