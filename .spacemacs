@@ -302,8 +302,7 @@ values."
    ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers '(:relative t
-                               :disabled-for-modes dired-mode
-                                                   doc-view-mode
+                               :disabled-for-modes doc-view-mode
                                                    markdown-mode
                                                    org-mode
                                                    pdf-view-mode
