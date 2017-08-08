@@ -392,6 +392,9 @@ you should place your code here."
   (define-key Buffer-menu-mode-map (kbd "K")
     (lambda () (interactive) (forward-line -10)))
 
+  ;; Launch external Python debugger when in `python-mode'
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
+
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
   ;; $ git ls-files --others --ignored --exclude-standard --directory
