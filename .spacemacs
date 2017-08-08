@@ -374,6 +374,7 @@ you should place your code here."
     "bk" 'kill-buffer-and-window
     "fet" 'dotspacemacs/test-dotfile
     "bl" 'list-buffers
+    "bi" 'ispell-buffer
     "b C-r" 'rename-buffer
     "fi" 'evil-show-file-info
     )
