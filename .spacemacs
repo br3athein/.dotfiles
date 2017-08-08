@@ -424,6 +424,9 @@ you should place your code here."
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-indent-guide-off)
   (add-hook 'magit-blame-mode-hook 'spacemacs/toggle-indent-guide-off)
 
+  (add-hook 'comint-mode-hook
+            (lambda () (setq-local truncate-lines nil)))
+
   ;; Navigation through HELM
   (require 'helm-files)
 
