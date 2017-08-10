@@ -11,9 +11,9 @@
 [alias]
 	rc = rebase --continue
 	mt = mergetool
-	hist = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph
-	ha = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph --all
 	unstage = reset HEAD --
+  hist = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph -n 256
+  ha = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph --all -n 256
 
 	legacy-hist = log --pretty=oneline --graph
 [credential]
