@@ -14,6 +14,7 @@
 	unstage = reset HEAD --
   hist = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph -n 256
   ha = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph --all -n 256
+  haall = log --pretty=format:'%C(auto)%h %ai | %s%d -- <%an>%Creset' --graph --all
 
 	legacy-hist = log --pretty=oneline --graph
 [credential]
