@@ -246,6 +246,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
+    -- alternative bind
+    awful.key({ "Mod1",           }, "Tab",    awful.tag.history.restore,
+      {description = "go back", group = "tag"}),
+
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx(-1)
