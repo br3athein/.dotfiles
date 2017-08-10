@@ -331,6 +331,9 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioNext", function () awful.util.spawn("playerctl next") end),
     awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("playerctl play-pause") end),
 
+    -- Screenshots
+    awful.key({ }, "Print",         function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end),
+
     -- Prompt
     awful.key({ modkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
