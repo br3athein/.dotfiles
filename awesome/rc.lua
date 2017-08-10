@@ -436,6 +436,10 @@ root.keys(globalkeys)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
+
+-- Running on a bunch of custom tags, so we have a need to resolve them on the fly.
+local tags = awful.screen.focused().tags;
+
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
@@ -484,6 +488,28 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+
+    { rule = { class = "Google-chrome" },
+      except = { role = "GtkFileChooserDialog" },
+      properties = { screen = 1, tag = tags[ 2] } },
+    { rule = { class = "Emacs"         },
+      properties = { screen = 1, tag = tags[ 3],
+                     maximized = true } },
+    { rule = { class = "Firefox"       },
+      except = { role = "GtkFileChooserDialog" },
+      properties = { screen = 1, tag = tags[ 4] } },
+    { rule = { class = "Spotify"       },
+      properties = { screen = 1, tag = tags[ 5] } },
+    { rule = { class = "Pinta"         },
+      properties = { screen = 1, tag = tags[ 7] } },
+    { rule = { class = "TelegramDesktop"      },
+      properties = { screen = 1, tag = tags[10] } },
+    { rule = { class = "skypeforlinux" },
+      properties = { screen = 1, tag = tags[10] } },
+
+    -- sooooooooooooooooooo long class, sorry
+    { rule = { class = "cool-retro-term"        },
+      properties = { fullscreen = true          } }
 }
 -- }}}
 
