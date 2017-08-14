@@ -54,6 +54,7 @@ values."
      csharp
      html
      javascript
+     lua
      python
      sql
      vimscript
