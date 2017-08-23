@@ -43,8 +43,7 @@ values."
      nginx
      pdf-tools
      prodigy
-     (ranger :variables
-             ranger-show-preview t
+     (ranger :variables ranger-show-preview t
              ranger-show-literal nil
              ranger-parent-depth 0
              ranger-cleanup-on-disable t)
@@ -391,10 +390,8 @@ you should place your code here."
     (lambda () (interactive) (forward-line -10)))
 
   ;; Same applies to Buffer-list-mode
-  (define-key Buffer-menu-mode-map (kbd "J")
-    (lambda () (interactive) (forward-line 10)))
-  (define-key Buffer-menu-mode-map (kbd "K")
-    (lambda () (interactive) (forward-line -10)))
+  (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
+  (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
 
   ;; Launch external Python debugger when in `python-mode'
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
@@ -428,8 +425,7 @@ you should place your code here."
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-indent-guide-off)
   (add-hook 'magit-blame-mode-hook 'spacemacs/toggle-indent-guide-off)
 
-  (add-hook 'comint-mode-hook
-            (lambda () (setq-local truncate-lines nil)))
+  (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
 
   ;; Navigation through HELM
   (require 'helm-files)
