@@ -71,6 +71,7 @@ values."
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-complete-with-key-sequence "jk"
+                      auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip 'manual)
      better-defaults
      emacs-lisp
