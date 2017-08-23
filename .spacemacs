@@ -374,7 +374,7 @@ you should place your code here."
     "Da" 'docker-container-shell
     "bk" 'kill-buffer-and-window
     "fet" 'dotspacemacs/test-dotfile
-    "bl" 'list-buffers
+    "bl" 'buffer-menu-other-window
     "bi" 'ispell-buffer
     "b C-r" 'rename-buffer
     "fi" 'evil-show-file-info
