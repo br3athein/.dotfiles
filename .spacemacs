@@ -67,9 +67,9 @@ values."
      ;; ----------------------------------------------------------------
      helm
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'nil
-                      auto-completion-tab-key-behavior 'nil
-                      auto-completion-enable-snippets-in-popup 't
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior nil
+                      auto-completion-enable-snippets-in-popup t
                       auto-completion-complete-with-key-sequence "jk"
                       auto-completion-enable-help-tooltip 'manual)
      better-defaults
