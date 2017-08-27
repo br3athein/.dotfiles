@@ -523,6 +523,8 @@ awful.rules.rules = {
       properties = { screen = 1, tag = tags[ 5] } },
     { rule = { class = "Pinta"         },
       properties = { screen = 1, tag = tags[ 7] } },
+    { rule = { class = "Steam"         },
+      properties = { screen = 1, tag = tags[ 9] } },
     { rule = { class = "TelegramDesktop"      },
       properties = { screen = 1, tag = tags[10] } },
     { rule = { class = "skypeforlinux" },
