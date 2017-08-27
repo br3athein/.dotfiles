@@ -3,25 +3,25 @@
 #define _color8        #000d18
 !RED Tag
 #define _color1        #e87373
-#define _color9        #e87373
+#define _color9        #d63030
 !GRN SpecialKey
-#define _color2        #7ede9e
+#define _color2        #7cde71
 #define _color10       #7ede9e
 !YEL Keyword
-#define _color3        #ffdf2b
+#define _color3        #d7af00
 #define _color11       #ffdf2b
 !BLU Number
 #define _color4        #6278c2
-#define _color12       #6278c2
+#define _color12       #6251ff
 !MAG Precondit
 #define _color5        #c0bed1
-#define _color13       #c0bed1
+#define _color13       #f0ded1
 !CYN Float
 #define _color6        #00afaf
-#define _color14       #00afaf
+#define _color14       #00ffff
 !WHT Search
 #define _color7        #efefef
-#define _color15       #efefef
+#define _color15       #cecece
 !FMT Include, StatusLine, ErrorMsg
 #define _colorBD       #ffcfaf
 #define _colorUL       #ccdc90
