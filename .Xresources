@@ -17,8 +17,8 @@
 #define _color5        #c0bed1
 #define _color13       #c0bed1
 !CYN Float
-#define _color6        #dfaf8f
-#define _color14       #dfaf8f
+#define _color6        #00cbcb
+#define _color14       #00cbcb
 !WHT Search
 #define _color7        #efefef
 #define _color15       #efefef
