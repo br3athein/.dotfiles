@@ -2,23 +2,23 @@
 #define _color0        #000d18
 #define _color8        #000d18
 !RED Tag
-#define _color1        #e89393
-#define _color9        #e89393
+#define _color1        #e87373
+#define _color9        #e87373
 !GRN SpecialKey
-#define _color2        #9ece9e
-#define _color10       #9ece9e
+#define _color2        #7ede9e
+#define _color10       #7ede9e
 !YEL Keyword
-#define _color3        #f0dfaf
-#define _color11       #f0dfaf
+#define _color3        #ffdf2b
+#define _color11       #ffdf2b
 !BLU Number
-#define _color4        #8cd0d3
-#define _color12       #8cd0d3
+#define _color4        #6278c2
+#define _color12       #6278c2
 !MAG Precondit
 #define _color5        #c0bed1
 #define _color13       #c0bed1
 !CYN Float
-#define _color6        #00cbcb
-#define _color14       #00cbcb
+#define _color6        #00afaf
+#define _color14       #00afaf
 !WHT Search
 #define _color7        #efefef
 #define _color15       #efefef
