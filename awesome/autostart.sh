@@ -8,7 +8,7 @@ function run {
 }
 
 # exec once on boot
-run kbdd
+run kbdd && sleep 1
 run setxkbmap -layout us,ru -option 'grp:win_space_toggle'
 run pulseaudio --start
 
