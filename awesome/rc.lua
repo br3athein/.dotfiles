@@ -42,7 +42,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/" .. "zenburn/theme.lua") -- need to find a way around this :/
+beautiful.init(awful.util.getdir("config") .. "themes/midnight/theme.lua")
 
 for s = 1, screen.count() do
   gears.wallpaper.maximized(beautiful.wallpaper, s, true)
