@@ -527,10 +527,6 @@ awful.rules.rules = {
       properties = { screen = 1, tag = tags[10] } },
     { rule = { class = "skypeforlinux" },
       properties = { screen = 1, tag = tags[10] } },
-
-    -- sooooooooooooooooooo long class, sorry
-    { rule = { class = "cool-retro-term"        },
-      properties = { fullscreen = true          } }
 }
 -- }}}
 
