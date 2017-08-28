@@ -428,7 +428,6 @@ you should place your code here."
 
   ;; Navigation through HELM
   (require 'helm-files)
-
   (add-hook 'helm-mode-hook
             (lambda ()
               (define-key helm-map (kbd "C-p") 'helm-previous-page)
