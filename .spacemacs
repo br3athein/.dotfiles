@@ -377,6 +377,8 @@ you should place your code here."
     "bi" 'ispell-buffer
     "b C-r" 'rename-buffer
     "fi" 'evil-show-file-info
+    "jQ" 'dumb-jump-go-other-window
+    "jp" 'dumb-jump-go-prompt
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
