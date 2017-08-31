@@ -384,13 +384,13 @@ you should place your code here."
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
   (define-key global-map (kbd "<C-tab>") 'company-complete)
 
-  ;; Simplify navigation in magit-log-mode
+  ;; Simplify navigation in `magit-log-mode'
   (define-key magit-log-mode-map (kbd "J")
     (lambda () (interactive) (forward-line 10)))
   (define-key magit-log-mode-map (kbd "K")
     (lambda () (interactive) (forward-line -10)))
 
-  ;; Same applies to Buffer-list-mode
+  ;; Same applies to `Buffer-menu-mode'
   (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
   (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
 
