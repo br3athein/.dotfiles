@@ -32,10 +32,10 @@ theme.fg_systray = theme.fg_focus
 
 -- {{{ Borders
 -- an ugly color for invisible borders
-theme.border_width  = 0
-theme.border_normal = "#00ff00"
-theme.border_focus  = "#00ff00"
-theme.border_marked = "#00ff00"
+theme.border_width  = 1
+theme.border_normal = "#1f3d6d"
+theme.border_focus  = "#1f3d6d"
+theme.border_marked = "#1f3d6d"
 -- }}}
 
 -- {{{ Titlebars
