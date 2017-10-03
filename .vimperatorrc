@@ -7,5 +7,14 @@ imap <C-f> <Right>
 imap <A-b> <C-Left>
 imap <A-f> <C-Right>
 
+" Duplicate the same to command line mode
+cmap <C-p> <Up>
+cmap <C-n> <Down>
+cmap <C-b> <Left>
+cmap <C-f> <Right>
+
+cmap <A-b> <C-Left>
+cmap <A-f> <C-Right>
+
 " Reopen closed tabs
 nmap <S-x> <C-S-t>
