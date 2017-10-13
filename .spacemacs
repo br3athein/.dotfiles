@@ -404,6 +404,7 @@ you should place your code here."
 
   ;; Launch external Python debugger when in `python-mode'
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
 
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
