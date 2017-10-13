@@ -454,6 +454,9 @@ you should place your code here."
   ;; used only to insert an linefeed without indenting a new line.
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (setq electric-indent-mode nil)
+
+  ;; Wow, so simple while leaving `SPC g s' on charge
+  (define-key evil-normal-state-map (kbd "g s") 'magit-status)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
