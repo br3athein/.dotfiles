@@ -428,11 +428,6 @@ you should place your code here."
    'magit-status-sections-hook 'magit-insert-ignored-files nil t)
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
-  ;; Looks exceptably fancy in Python.
-  (add-hook 'python-mode-hook 'spacemacs/toggle-indent-guide-on)
-  ;; Can't say the same about XML or Magit-blame state though.
-  (add-hook 'nxml-mode-hook 'spacemacs/toggle-indent-guide-off)
-  (add-hook 'magit-blame-mode-hook 'spacemacs/toggle-indent-guide-off)
 
   (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
 
