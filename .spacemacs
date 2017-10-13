@@ -49,7 +49,7 @@ values."
              ranger-override-dired t
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
-     ;; semantic
+     ; semantic
 
      ;; Languages
      csharp
