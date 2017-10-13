@@ -384,6 +384,11 @@ you should place your code here."
     "jp" 'dumb-jump-go-prompt
     )
 
+  ;; `o' prefix
+  (evil-leader/set-key
+    "oi" 'yas-insert-snippet
+    )
+
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
   (define-key global-map (kbd "<C-tab>") 'company-complete)
 
