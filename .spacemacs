@@ -46,6 +46,8 @@ values."
      (ranger :variables ranger-show-preview t
              ranger-show-literal nil
              ranger-parent-depth 0
+             ranger-override-dired t
+             ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
      ;; semantic
 
