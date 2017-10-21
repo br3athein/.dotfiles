@@ -402,6 +402,10 @@ you should place your code here."
   (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
   (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
 
+  ;; Bring more of native ranger to `ranger-mode'
+  (define-key ranger-mode-map (kbd "TAB") 'ranger-next-tab)
+  (define-key ranger-mode-map (kbd "<backtab>") 'ranger-prev-tab)
+
   ;; Launch external Python debugger when in `python-mode'
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
