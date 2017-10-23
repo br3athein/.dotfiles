@@ -449,9 +449,16 @@ you should place your code here."
        (car current-layout-buffers)
        (cadr current-layout-buffers))))
 
+  ;; Toggle touchpad from inside Spacemacs
+  (defun touchpad-toggle ()
+    "Runs an external homebrew script that toggles touchpad state."
+    (interactive)
+    (shell-command "touchpad-toggle"))
+
   ;; Binds for own defuns
   (evil-leader/set-key
     (kbd "b C-d") 'diff-current-layout
+    (kbd "t t") 'touchpad-toggle
     )
 
   ;; Disable strange 'new' feature
