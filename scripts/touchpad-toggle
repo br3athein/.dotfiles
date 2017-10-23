@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+TOUCHPAD_STATE="$(synclient | grep TouchpadOff | cut -d'=' -f2 | sed -e 's/^[[:space:]]*//')"
+
+if [ $TOUCHPAD_STATE -eq 1 ]
+then
+  TOUCHPAD_NEW_STATE=0
+  echo "Touchpad: ON"
+else
+  TOUCHPAD_NEW_STATE=1
+  echo "Touchpad: OFF"
+fi
+
+synclient TouchpadOff=$TOUCHPAD_NEW_STATE
