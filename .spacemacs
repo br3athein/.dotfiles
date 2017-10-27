@@ -379,7 +379,6 @@ you should place your code here."
     "bl" 'buffer-menu-other-window
     "bi" 'ispell-buffer
     "b C-r" 'rename-buffer
-    "fi" 'evil-show-file-info
     "jQ" 'dumb-jump-go-other-window
     "jp" 'dumb-jump-go-prompt
     )
