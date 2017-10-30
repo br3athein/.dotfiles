@@ -13,7 +13,7 @@ urxvtd --quiet --fork
 run setxkbmap -layout us,ru -option 'grp:win_space_toggle' -option caps:swapescape
 run pulseaudio --start
 
-run compton --config /home/br3athein/.compton.conf &
+run compton --config /home/br3athein/.compton.conf
 
 # kick off apps in background
 run spotifywm
