@@ -399,6 +399,7 @@ you should place your code here."
   ;; `o' prefix
   (evil-leader/set-key
     "oi" 'yas-insert-snippet
+    "os" 'sql-connect
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
