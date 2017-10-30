@@ -484,6 +484,9 @@ you should place your code here."
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (setq electric-indent-mode nil)
 
+  (add-to-load-path "~/.spacemacs.d/")
+  (load "prodigy-services")
+
   ;; Wow, so simple while leaving `SPC g s' on charge
   (define-key evil-normal-state-map (kbd "g s") 'magit-status)
   )
