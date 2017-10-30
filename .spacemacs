@@ -373,6 +373,9 @@ you should place your code here."
   (global-set-key (kbd "<mouse-6>") (lambda () (interactive) (scroll-right 3)))
   (global-set-key (kbd "<mouse-7>") (lambda () (interactive) (scroll-left 3)))
 
+  ;; Scroll Lock is back! :D
+  (global-set-key (kbd "<Scroll_Lock>") 'scroll-lock-mode)
+
   ;; Mode toggles
   (spacemacs/enable-transparency)
   (spaceline-toggle-minor-modes-off)
