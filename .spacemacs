@@ -487,6 +487,9 @@ you should place your code here."
   ;; Wow, so simple while leaving `SPC g s' on charge
   (define-key evil-normal-state-map (kbd "g s") 'magit-status)
 
+  ;; Use widely supported shell instead of my own zsh
+  (setenv "ESHELL" "bash")
+
   (add-to-load-path "~/.spacemacs.d/")
   (load "prodigy-services")
   )
