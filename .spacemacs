@@ -398,6 +398,7 @@ you should place your code here."
   (evil-leader/set-key
     "oi" 'yas-insert-snippet
     "os" 'sql-connect
+    "omc" 'evil-mc-mode
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
