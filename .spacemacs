@@ -43,7 +43,8 @@ values."
      nginx
      pdf-tools
      prodigy
-     (ranger :variables ranger-show-preview t
+     (ranger :variables
+             ranger-show-preview t
              ranger-show-literal nil
              ranger-parent-depth 0
              ranger-override-dired t
