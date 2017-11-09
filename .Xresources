@@ -55,6 +55,18 @@ URxvt*loginShell: true
 URxvt*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 URxvt*eightBitInput: false
 URxvt*scrollBar: false
+
+! Source: https://wiki.archlinux.org/index.php/rxvt-unicode
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+! end source
+
 ! URxvt*scrollmode: plain
 ! URxvt*scrollBar_right: true
 ! URxvt*scrollColor: _colorIT
