@@ -3,7 +3,7 @@
 #define _color8        #000d18
 !RED Tag
 #define _color1        #e87373
-#define _color9        #d63030
+#define _color9        #e84040
 !GRN SpecialKey
 #define _color2        #7cde71
 #define _color10       #7ede9e
