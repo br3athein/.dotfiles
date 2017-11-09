@@ -362,8 +362,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (require 'helm-bookmark)
-
   ;; Disable `mouse-wheel-mode', then configure wheel manually
   (mouse-wheel-mode -1)
 
