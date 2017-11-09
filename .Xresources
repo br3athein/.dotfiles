@@ -73,13 +73,16 @@ URxvt*scrollTtyKeypress: true
 
 URxvt*termName: xterm-color
 ! URxvt*perl-ext:
-URxvt*perl-ext-common: default,clipboard,selection-to-clipboard
+URxvt*perl-ext-common: default,clipboard,selection-to-clipboard,matcher
 
 URxvt.iso14755: False
 URxvt.iso14755_52: False
 
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
+
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 
 URxvt*color0         : _color0
 URxvt*color1         : _color1
