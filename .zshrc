@@ -78,6 +78,36 @@ export EDITOR='vim'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Customize agnoster theme a bit
+if [ $ZSH_THEME = agnoster ]; then
+    prompt_context() {
+        if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+            prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+        fi
+    }
+
+    # Ranger prompt
+    prompt_ranger() {
+        if [ -n "$RANGER_LEVEL" ]; then
+            prompt_segment black blue "rng"
+        fi
+    }
+
+    ## Main prompt
+    build_prompt() {
+        RETVAL=$?
+        prompt_status
+        prompt_ranger
+        prompt_virtualenv
+        prompt_context
+        prompt_dir
+        prompt_git
+        prompt_bzr
+        prompt_hg
+        prompt_end
+    }
+fi
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
