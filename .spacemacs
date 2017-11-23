@@ -396,7 +396,6 @@ you should place your code here."
 
   ;; `o' prefix
   (evil-leader/set-key
-    "oi" 'yas-insert-snippet
     "os" 'sql-connect
     "oib" 'ispell-buffer
     "omc" 'evil-mc-mode
