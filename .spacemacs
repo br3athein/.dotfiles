@@ -40,6 +40,7 @@ values."
      chrome
      csv
      docker
+     imenu-list
      nginx
      pdf-tools
      prodigy
@@ -388,7 +389,6 @@ you should place your code here."
     "bk" 'kill-buffer-and-window
     "fet" 'dotspacemacs/test-dotfile
     "bl" 'buffer-menu-other-window
-    "bi" 'ispell-buffer
     "b C-r" 'rename-buffer
     "jQ" 'dumb-jump-go-other-window
     "jp" 'dumb-jump-go-prompt
@@ -398,6 +398,7 @@ you should place your code here."
   (evil-leader/set-key
     "oi" 'yas-insert-snippet
     "os" 'sql-connect
+    "oib" 'ispell-buffer
     "omc" 'evil-mc-mode
     )
 
