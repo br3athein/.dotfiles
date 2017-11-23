@@ -401,7 +401,7 @@ you should place your code here."
 
   ;; `o' prefix
   (evil-leader/set-key
-    "os" 'sql-connect
+    "osc" 'sql-connect
     "oib" 'ispell-buffer
     "omc" 'evil-mc-mode
     )
