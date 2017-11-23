@@ -390,10 +390,10 @@ you should place your code here."
   (evil-leader/set-key
     "`" 'winum-select-window-0
     "Da" 'docker-container-shell
-    "bk" 'kill-buffer-and-window
-    "fet" 'dotspacemacs/test-dotfile
-    "bl" 'buffer-menu-other-window
     "b C-r" 'rename-buffer
+    "bk" 'kill-buffer-and-window
+    "bl" 'buffer-menu-other-window
+    "fet" 'dotspacemacs/test-dotfile
     "jQ" 'dumb-jump-go-other-window
     "jp" 'dumb-jump-go-prompt
     "pt" 'treemacs-projectile
