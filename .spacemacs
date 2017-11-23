@@ -52,6 +52,10 @@ values."
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
      semantic
+     (treemacs :variables
+               treemacs-use-follow-mode t
+               treemacs-use-filewatch-mode t
+               treemacs-winum-number 0)
 
      ;; Languages
      csharp
@@ -392,6 +396,7 @@ you should place your code here."
     "b C-r" 'rename-buffer
     "jQ" 'dumb-jump-go-other-window
     "jp" 'dumb-jump-go-prompt
+    "pt" 'treemacs-projectile
     )
 
   ;; `o' prefix
