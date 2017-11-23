@@ -400,6 +400,7 @@ you should place your code here."
     )
 
   ;; `o' prefix
+  (spacemacs/declare-prefix "o" "user binds")
   (evil-leader/set-key
     "o ib" 'ispell-buffer
     "o mc" 'evil-mc-mode
