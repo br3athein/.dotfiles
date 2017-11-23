@@ -401,9 +401,9 @@ you should place your code here."
 
   ;; `o' prefix
   (evil-leader/set-key
-    "o sc" 'sql-connect
     "o ib" 'ispell-buffer
     "o mc" 'evil-mc-mode
+    "o sc" 'sql-connect
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
