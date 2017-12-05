@@ -366,16 +366,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; Disable `mouse-wheel-mode', then configure wheel manually
-  (mouse-wheel-mode -1)
-
-  ;; Verticall scroll stand-in
-  (global-set-key (kbd "<mouse-4>") (lambda () (interactive) (scroll-down 3)))
-  (global-set-key (kbd "<mouse-5>") (lambda () (interactive) (scroll-up 3)))
-  ;; Horizontal scrolling
-  (global-set-key (kbd "<mouse-6>") (lambda () (interactive) (scroll-right 3)))
-  (global-set-key (kbd "<mouse-7>") (lambda () (interactive) (scroll-left 3)))
-
   ;; Scroll Lock is back! :D
   (global-set-key (kbd "<Scroll_Lock>") 'scroll-lock-mode)
 
