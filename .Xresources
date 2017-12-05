@@ -28,7 +28,7 @@
 #define _colorIT       #8ae234
 !TXT Normal, Normal, Cursor
 #define _foreground    #dcdccc
-#define _background    [80]#2e3436
+#define _background    [90]#2e3436
 #define _cursorColor   #8faf9f
 
 XTerm*faceName: Terminus
