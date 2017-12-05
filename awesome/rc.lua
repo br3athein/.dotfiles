@@ -15,6 +15,13 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Widgets, finally!
+require("awesome-wm-widgets.battery-widget.battery")
+require("awesome-wm-widgets.volume-widget.volume")
+require("awesome-wm-widgets.spotify-widget.spotify")
+
+local net_widgets = require("net_widgets")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -216,6 +223,11 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
+            spotify_widget,
+            volume_widget,
+            battery_widget,
+            net_widgets.indicator({interfaces={"enp2s0"}}),
+            net_widgets.wireless({interface="wlp3s0"}),
             mytextclock,
             s.mylayoutbox,
         },
