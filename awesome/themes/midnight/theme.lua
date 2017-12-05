@@ -8,7 +8,7 @@
 -- Still got a load of stuff to do with this.
 
 -- Alternative icon sets and widget icons:
---  * http://awesome.naquadah.org/wiki/Nice_Icons
+--  * https://gabriela2400.deviantart.com/art/Arch-Linux-Start-Icons-175557586
 
 -- {{{ Main
 theme = {}
