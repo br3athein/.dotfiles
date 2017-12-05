@@ -33,7 +33,7 @@ values."
    '(
      ;; Look&feel
      (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
+             colors-enable-nyan-cat-progress-bar nil)
      emoji
 
      ;; Tools
