@@ -148,3 +148,11 @@ prompt_context() {
 alias jxe='journalctl -xe'
 alias jxeu='journalctl -xefu'
 alias dmesg='dmesg --human'
+
+# Run temporary Docker containers in-place
+alias drub='docker run --rm -it ubuntu:16.04'
+alias drce='docker run --rm -it centos:centos7'
+alias dral='docker run --rm -it base/archlinux:latest'
+
+# Docker: resolve IP
+alias drip='docker inspect --format='\''{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'\'
