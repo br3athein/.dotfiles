@@ -401,6 +401,7 @@ you should place your code here."
   (define-key global-map (kbd "<C-tab>") 'company-complete)
 
   ;; Simplify navigation in `magit-log-mode'
+  (require 'magit)
   (define-key magit-log-mode-map (kbd "J")
     (lambda () (interactive) (forward-line 10)))
   (define-key magit-log-mode-map (kbd "K")
