@@ -78,6 +78,9 @@ export EDITOR='vim'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Set up default shell user
+DEFAULT_USER=br3athein
+
 # Customize agnoster theme a bit
 if [ $ZSH_THEME = agnoster ]; then
     prompt_context() {
@@ -131,8 +134,6 @@ alias ranger='ranger-cd'
 
 alias py2="python2"
 alias py3="python3"
-
-DEFAULT_USER=br3athein
 
 prompt_context() {
     if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
