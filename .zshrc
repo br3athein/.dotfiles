@@ -156,3 +156,7 @@ alias dral='docker run --rm -it base/archlinux:latest'
 
 # Docker: resolve IP
 alias drip='docker inspect --format='\''{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'\'
+
+# Multihead setups
+alias multihead-left='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --left-of eDP-1'
+alias multihead-right='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --right-of eDP-1'
