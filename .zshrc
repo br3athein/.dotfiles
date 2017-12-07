@@ -133,8 +133,8 @@ alias ranger='ranger-cd'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Handy!
-alias py2="python2"
-alias py3="python3"
+alias py2='python2'
+alias py3='python3'
 
 prompt_context() {
     if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
