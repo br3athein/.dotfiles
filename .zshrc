@@ -143,3 +143,8 @@ prompt_context() {
         prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
     fi
 }
+
+# Read stuff like a gangster
+alias jxe='journalctl -xe'
+alias jxeu='journalctl -xefu'
+alias dmesg='dmesg --human'
