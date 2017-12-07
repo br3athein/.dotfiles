@@ -527,9 +527,17 @@ awful.rules.rules = {
       }
   }, properties = { floating = true }},
 
-  -- Remove titlebars from normal clients and dialogs
-  { rule_any = { type = { "normal", "dialog" } },
+  -- Disable titlebars for normal clients
+  { rule_any = { type = { "normal" } },
     properties = { titlebars_enabled = false },
+  },
+
+  -- Add titlebars to dialogs
+  { rule_any = { type = { "dialog" } },
+    properties = { titlebars_enabled = true },
+    callback = function (c)
+      awful.placement.centered(c, nil)
+    end,
   },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
