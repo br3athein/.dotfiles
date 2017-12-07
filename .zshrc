@@ -133,6 +133,8 @@ alias ranger='ranger-cd'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Handy!
+alias zshconfig="$EDITOR ~/.zshrc"
+alias reload='exec zsh'
 alias py2='python2'
 alias py3='python3'
 
