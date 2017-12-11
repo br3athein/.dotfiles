@@ -191,7 +191,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     awful.tag({
-        "", "", "", "", "", "", "", "", "", "",
+        "", "", "", "", "", "", "", "", "", "",
               }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
@@ -231,8 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
         spotify_widget,
         volume_widget,
         battery_widget,
-        net_widgets.indicator({interfaces={"enp2s0"}}),
-        net_widgets.wireless({interface="wlp3s0", popup_signal=true}),
+        net_widgets.indicator({interfaces={"enp1s0"}}),
         mytextclock,
         s.mylayoutbox,
       },

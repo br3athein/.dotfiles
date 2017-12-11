@@ -42,7 +42,7 @@ XTerm*eightBitInput: false
 
 URxvt*depth: 32
 
-URxvt.font: xft:xos4 Terminess Powerline:size=13, \
+URxvt.font: xft:Terminess Powerline:size=13, \
             xft:Terminus:size=13, \
             xft:WenQuanYi Bitmap Song:size=8, \
             xft:FreeSerif:style=Regular, \
