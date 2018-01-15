@@ -381,7 +381,6 @@ you should place your code here."
     "`" 'winum-select-window-0
     "Da" 'docker-container-shell
     "b C-r" 'rename-buffer
-    "bk" 'kill-buffer-and-window
     "bl" 'buffer-menu-other-window
     "fet" 'dotspacemacs/test-dotfile
     "jQ" 'dumb-jump-go-other-window
