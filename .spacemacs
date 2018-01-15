@@ -398,7 +398,7 @@ you should place your code here."
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-  (define-key global-map (kbd "<C-tab>") 'company-complete)
+  (global-set-key (kbd "<C-tab>") 'company-complete)
 
   ;; Simplify navigation in `magit-log-mode'
   (require 'magit)
