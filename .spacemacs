@@ -92,7 +92,7 @@ values."
      (shell :variables
             shell-default-height '30
             shell-default-position 'bottom
-            shell-default-shell 'ansi-term
+            shell-default-shell 'eshell
             shell-enable-smart-eshell 't
             shell-protect-eshell-prompt 't)
      (spell-checking :variables
