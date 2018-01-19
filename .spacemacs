@@ -482,7 +482,7 @@ before packages are loaded."
 
   (defun magit-insert-ignored-files ()
     (-when-let (files (magit-ignored-files))
-      (magit-insert-section (ignored)
+      (magit-insert-section (ignored nil t)
         (magit-insert-heading "Ignored files:")
         (magit-insert-un/tracked-files-1 files nil)
         (insert ?\n))))
