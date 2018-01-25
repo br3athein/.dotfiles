@@ -34,9 +34,9 @@ This function should only modify configuration layer settings."
      (colors :variables
              colors-enable-nyan-cat-progress-bar nil)
      emoji
+     themes-megapack
 
      ;; Tools
-     chrome
      csv
      docker
      imenu-list
@@ -50,20 +50,20 @@ This function should only modify configuration layer settings."
              ranger-override-dired t
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
+     restructuredtext
      semantic
+     sphinx
      (treemacs :variables
                treemacs-use-follow-mode t
                treemacs-use-filewatch-mode t
                treemacs-winum-number 0)
 
      ;; Languages
-     csharp
      html
      javascript
      lua
      python
      sql
-     vimscript
      yaml
 
      ;; ----------------------------------------------------------------
