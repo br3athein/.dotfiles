@@ -476,6 +476,12 @@ before packages are loaded."
   (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
   (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
 
+  ;; would like 2 use it inside Treemacs too
+  (with-eval-after-load 'treemacs
+    (define-key evil-treemacs-state-map (kbd "J") (lambda () (interactive) (treemacs-next-line 10)))
+    (define-key evil-treemacs-state-map (kbd "K") (lambda () (interactive) (treemacs-previous-line 10)))
+    )
+
   ;; Unbind n/N keys in `Buffer-menu-mode-map' to allow searching things
   (define-key Buffer-menu-mode-map (kbd "n") nil)
   (define-key Buffer-menu-mode-map (kbd "N") nil)
