@@ -450,6 +450,12 @@ before packages are loaded."
     "b C-r" 'rename-buffer
     "bl" 'buffer-menu-other-window
     "fet" 'dotspacemacs/test-dotfile
+
+    ;; Treemacs hate zone
+    "ft" 'treemacs-find-file
+    "fT" nil
+    "f C-t" nil
+
     "jQ" 'dumb-jump-go-other-window
     "jp" 'dumb-jump-go-prompt
     )
