@@ -524,6 +524,12 @@ before packages are loaded."
     (define-key helm-ag-map (kbd "C-M-j") 'helm-follow-action-forward)
     )
 
+  ;; projectile
+  (with-eval-after-load 'projectile
+    (add-to-list 'projectile-globally-ignored-directories ".ropeproject")
+    (add-to-list 'projectile-globally-ignored-directories ".mypy_cache")
+    )
+
   (with-eval-after-load 'org
     ;; load org-projectile ASAP, we need it to build an informative agenda
     (require 'org-projectile)
