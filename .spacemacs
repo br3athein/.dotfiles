@@ -473,8 +473,12 @@ before packages are loaded."
     "o fr" 'recover-this-file
     )
 
+  ;; Global (or close to global) userbinds
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-  (global-set-key (kbd "<C-tab>") 'company-complete)
+  ;; we're rebinding ~s~ to `magit-status' in the very next section
+  ;; ~S~ seems to overlap w/ ~s~ - basically does the same thing
+  (define-key evil-visual-state-map (kbd "S") 'evil-Surround-region)
+  (global-set-key (kbd "<f8>") 'treemacs)
 
   ;; `magit' customization
   ;; TODO: consider putting more effort on `magit-dispatch-popup',
