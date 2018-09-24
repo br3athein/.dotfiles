@@ -51,7 +51,8 @@ This function should only modify configuration layer settings."
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
      restructuredtext
-     semantic
+     (semantic :disabled-for emacs-lisp
+               )
      sphinx
      (treemacs :variables
                treemacs-use-follow-mode t
