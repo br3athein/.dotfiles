@@ -518,6 +518,11 @@ before packages are loaded."
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
+  (with-eval-after-load 'web-mode
+    (add-hook 'web-mode-hook 'turn-on-smartparens-mode)
+    (setq-default web-mode-markup-indent-offset 2)
+    )
+
 
   ;; Navigation through HELM
   (with-eval-after-load 'helm
