@@ -40,6 +40,10 @@ This function should only modify configuration layer settings."
      csv
      docker
      imenu-list
+     ;; do u really need two GH frontends are being provided in parallel?
+     ;; `github' layer provides both `magithub' and `magit-gh-pulls' packages,
+     ;; and they seem to clash w/ each other, as far as I'm concerned
+     github
      lsp
      nginx
      pdf
