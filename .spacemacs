@@ -546,10 +546,7 @@ before packages are loaded."
         (insert ?\n))))
 
   ;; Custom hooks
-  (magit-add-section-hook
-   'magit-status-sections-hook 'magit-insert-ignored-files nil t)
   (add-hook 'csv-mode-hook (lambda () (csv-align-fields nil 1 (point-max))))
-  (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
   (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'python-mode-hook 'spacemacs/toggle-camel-case-motion-on)
 
@@ -557,7 +554,6 @@ before packages are loaded."
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
 
-  (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
   (with-eval-after-load 'web-mode
     (add-hook 'web-mode-hook 'turn-on-smartparens-mode)
     (setq-default web-mode-markup-indent-offset 2)
