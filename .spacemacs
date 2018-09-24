@@ -58,6 +58,8 @@ This function should only modify configuration layer settings."
              ranger-cleanup-on-disable t)
      restructuredtext
      (semantic :disabled-for emacs-lisp
+               :variables
+               semantic-idle-scheduler-queue '(semantic-fetch-tags)
                )
      sphinx
      (treemacs :variables
