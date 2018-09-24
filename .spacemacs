@@ -56,9 +56,8 @@ This function should only modify configuration layer settings."
                )
      sphinx
      (treemacs :variables
-               treemacs-use-follow-mode t
-               treemacs-use-filewatch-mode t
-               treemacs-winum-number 0)
+               treemacs-use-follow-mode nil
+               treemacs-use-filewatch-mode t)
 
      ;; Languages
      html
