@@ -519,6 +519,11 @@ before packages are loaded."
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
 
+  (with-eval-after-load 'emmet-mode
+    (define-key emmet-mode-keymap (kbd "C-M-j") 'nil)
+    (define-key emmet-mode-keymap (kbd "C-j") 'nil)
+    )
+
   (with-eval-after-load 'yasnippet
     ; override `yas-next-field-or-maybe-expand' bind, since I don't
     ; really wanna nest snippets into each other that often :P
