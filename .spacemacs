@@ -505,6 +505,12 @@ before packages are loaded."
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
 
+  (with-eval-after-load 'yasnippet
+    ; override `yas-next-field-or-maybe-expand' bind, since I don't
+    ; really wanna nest snippets into each other that often :P
+    (define-key yas-keymap (kbd "<tab>") 'yas-next-field)
+    )
+
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
   ;; $ git ls-files --others --ignored --exclude-standard --directory
