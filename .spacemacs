@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      csv
      docker
      imenu-list
+     lsp
      nginx
      pdf
      prodigy
@@ -63,7 +64,8 @@ This function should only modify configuration layer settings."
      html
      javascript
      lua
-     python
+     (python :variables
+             python-backend 'lsp)
      sql
      yaml
 
