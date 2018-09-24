@@ -438,7 +438,9 @@ before packages are loaded."
   ;; Mode toggles
   (spacemacs/enable-transparency)
   (spaceline-toggle-minor-modes-off)
+  (spacemacs/toggle-smartparens-globally-on)
   (spacemacs/toggle-mode-line-org-clock-on)
+  (evil-goggles-mode)
   (setq-default word-wrap t
                 truncate-lines t
                 )
