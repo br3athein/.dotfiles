@@ -418,9 +418,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Scroll Lock is back! :D
-  (global-set-key (kbd "<Scroll_Lock>") 'scroll-lock-mode)
-
   ;; Mode toggles
   (spacemacs/enable-transparency)
   (spaceline-toggle-minor-modes-off)
