@@ -92,7 +92,13 @@ This function should only modify configuration layer settings."
           git-commit-fill-column 72
           magit-save-repository-buffers 'dontask)
      markdown
-     org
+     (org :variables
+          org-enable-org-journal-support t
+          org-journal-dir "~/org/journal/"
+          org-journal-file-format "%Y-%m-%d.org"
+          ;; org-projectile-file (concat (getenv "HOME") "/org/projectile/")
+          org-pomodoro-format "🍅 %s"
+          org-agenda-files '("~/org/"))
      (shell :variables
             shell-default-height '30
             shell-default-position 'bottom
@@ -424,6 +430,7 @@ before packages are loaded."
   ;; Mode toggles
   (spacemacs/enable-transparency)
   (spaceline-toggle-minor-modes-off)
+  (spacemacs/toggle-mode-line-org-clock-on)
   (setq-default word-wrap t
                 truncate-lines t
                 )
@@ -503,6 +510,75 @@ before packages are loaded."
   (require 'helm)
   (define-key helm-map (kbd "C-p") 'helm-previous-page)
   (define-key helm-map (kbd "C-n") 'helm-next-page)
+
+  (with-eval-after-load 'org
+    ;; load org-projectile ASAP, we need it to build an informative agenda
+    (require 'org-projectile)
+    ;; XXX: the whole block would be a purely dead code after switching to
+    ;; functioned agenda (the latter is TBD).
+    ;; Source `org-projectile-files' in `org-agenda' buffers.
+    ;; ignores `org-projectile' TODOs.org files created after Emacs is initialized.
+    ;; Not a major issue tho, refresh can be easily triggered by calling
+    ;; `dotspacemacs/sync-configuration-layers', which is bound to =SPC f e R=.
+    (mapcar (lambda (projectile-todo-file)
+              (when (file-exists-p projectile-todo-file)
+                (add-to-list 'org-agenda-files projectile-todo-file t)))
+            (org-projectile-todo-files))
+
+    ;; Expand list of possible task states
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "WIP(s)" "REVIEW(i)" "|" "DONE(d)")
+            (sequence "REPORT(r)" "BUG(b)" "KNOWNC(k)" "|" "FIXED(f)")
+            (type "LOCKED(l)" "|" "CANCEL(c)" "PASSED(p)"))
+          org-clock-persist t
+          org-clock-idle-time 10
+          org-enforce-todo-checkbox-dependencies t
+          org-enforce-todo-dependencies t)
+    (setq org-todo-keyword-faces
+          '(("WIP" . (:foreground "DeepSkyBlue1"))
+            ("REVIEW" . (:foreground "MediumSlateBlue"))
+            ("REPORT" . (:foreground "goldenrod"))
+            ("BUG" . (:foreground "tomato"))
+            ("KNOWNC" . (:foreground "MediumSlateBlue"))
+            ("LOCKED" . (:foreground "firebrick"))
+            ("CANCEL" . (:foreground "pink")))
+          org-capture-templates
+          (quote
+           (("n" "Note" entry (file "~/org/notes.org")
+             "")
+            ("g" "General" entry (file "~/org/general.org")
+             "")
+            ("G" "General (clock in)" entry (file "~/org/general.org")
+             "" :clock-in t :clock-resume t)
+            ("t" "Task" entry (file "~/org/journal/landing-bay.org")
+             "* TODO %^{Generic name} %?\n")
+            ("r" "Catchall for reviews" entry (file "~/org/reviews.org")
+             "* Review %^{PR link}" :clock-in t :clock-resume t :prepend t)
+            ("j" "Journal entry (usage is discouraged)" entry (file+datetree "~/org/journal/journal.org")
+             "%^G* %<%R> %?\n")
+            )))
+    ;; `org-clocktable' configuration
+    ;; basically, purpose is to ignore zero-length timelogs and agenda
+    ;; files w/ no timelogs in the scope
+    ;; (file|step)skip0 both altered nil -> t
+    ;; TODO: can't shake the feeling that I'm just underqualified to make this
+    ;; piece look good, cause there's no need to overwrite the whole variable :3
+    (setq org-clocktable-defaults
+          '(:maxlevel 2 :lang "en" :scope file :block nil :wstart 1 :mstart 1
+                      :tstart nil :tend nil :step nil :stepskip0 t :fileskip0 t
+                      :tags nil :emphasize nil :link nil :narrow 40! :indent t
+                      :formula nil :timestamp nil :level nil :tcolumns nil
+                      :formatter nil))
+    (org-clock-persistence-insinuate)
+
+    ;; Allow setting priorities on TODOs in `org-mode'
+    (evil-leader/set-key-for-mode 'org-mode (kbd "i #") 'org-priority)
+    (evil-leader/set-key-for-mode 'org-mode (kbd "C R") 'org-evaluate-time-range)
+    )
+
+  (with-eval-after-load 'org-agenda
+    (define-key org-agenda-keymap "P" 'org-pomodoro)
+    )
 
   ;; Launch diff on currently selected buffers - still WIP
   (defun diff-current-layout ()
