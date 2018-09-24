@@ -457,9 +457,11 @@ before packages are loaded."
   ;; `o' prefix
   (spacemacs/declare-prefix "o" "user binds")
   (evil-leader/set-key
+    "o gs" 'magit-save-repository-buffers
     "o ib" 'ispell-buffer
     "o mc" 'evil-mc-mode
     "o sc" 'sql-connect
+    "o fr" 'recover-this-file
     )
 
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
