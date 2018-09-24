@@ -513,9 +513,16 @@ before packages are loaded."
   (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
 
   ;; Navigation through HELM
-  (require 'helm)
-  (define-key helm-map (kbd "C-p") 'helm-previous-page)
-  (define-key helm-map (kbd "C-n") 'helm-next-page)
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-p") 'helm-previous-page)
+    (define-key helm-map (kbd "C-n") 'helm-next-page)
+    )
+
+  ;; `helm-ag' improvements
+  (with-eval-after-load 'helm-ag
+    (define-key helm-ag-map (kbd "C-M-k") 'helm-follow-action-backward)
+    (define-key helm-ag-map (kbd "C-M-j") 'helm-follow-action-forward)
+    )
 
   (with-eval-after-load 'org
     ;; load org-projectile ASAP, we need it to build an informative agenda
