@@ -117,7 +117,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(realgud)
+   dotspacemacs-additional-packages '(po-mode minimap org-jira)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -468,6 +468,7 @@ before packages are loaded."
     "o gs" 'magit-save-repository-buffers
     "o ib" 'ispell-buffer
     "o mc" 'evil-mc-mode
+    "o mm" 'minimap-mode
     "o sc" 'sql-connect
     "o fr" 'recover-this-file
     )
@@ -519,9 +520,6 @@ before packages are loaded."
         (magit-insert-un/tracked-files-1 files nil)
         (insert ?\n))))
 
-  ;; Enable debugging
-  (load-library "realgud")
-
   ;; Custom hooks
   (magit-add-section-hook
    'magit-status-sections-hook 'magit-insert-ignored-files nil t)
@@ -532,6 +530,7 @@ before packages are loaded."
 
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
 
   (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
   (with-eval-after-load 'web-mode
@@ -627,6 +626,11 @@ before packages are loaded."
 
   (with-eval-after-load 'org-agenda
     (define-key org-agenda-keymap "P" 'org-pomodoro)
+    )
+
+  ;; Additional ghetto
+  (with-eval-after-load 'minimap-mode
+    (setq-local minimap-window-location 'right)
     )
 
   ;; Launch diff on currently selected buffers - still WIP
