@@ -39,6 +39,7 @@ This function should only modify configuration layer settings."
      ;; Tools
      csv
      docker
+     ibuffer
      imenu-list
      ;; do u really need two GH frontends are being provided in parallel?
      ;; `github' layer provides both `magithub' and `magit-gh-pulls' packages,
