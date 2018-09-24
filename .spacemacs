@@ -87,7 +87,6 @@ This function should only modify configuration layer settings."
      (git :variables
           git-magit-status-fullscreen t
           git-commit-fill-column 72
-          magit-revision-show-gravatars t
           magit-save-repository-buffers 'dontask)
      markdown
      org
