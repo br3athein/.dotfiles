@@ -523,6 +523,8 @@ before packages are loaded."
     (setq-default web-mode-markup-indent-offset 2)
     )
 
+  (with-eval-after-load 'treemacs
+    (add-to-list 'treemacs-pre-file-insert-predicates 'treemacs-is-file-git-ignored?))
 
   ;; Navigation through HELM
   (with-eval-after-load 'helm
