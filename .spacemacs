@@ -476,12 +476,22 @@ before packages are loaded."
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
   (global-set-key (kbd "<C-tab>") 'company-complete)
 
-  ;; Simplify navigation in `magit-log-mode'
-  (require 'magit)
-  (define-key magit-log-mode-map (kbd "J")
-    (lambda () (interactive) (forward-line 10)))
-  (define-key magit-log-mode-map (kbd "K")
-    (lambda () (interactive) (forward-line -10)))
+  ;; `magit' customization
+  ;; TODO: consider putting more effort on `magit-dispatch-popup',
+  ;; bound to ~SPC g m~ by default, it looks handy :3
+  (define-key evil-normal-state-map (kbd "s") 'magit-status)
+  (with-eval-after-load 'magit
+    ;; load `magithub' ASAP, so one shouldn't trigger the load of it manually
+    (require 'magithub)
+    ;; Simplify navigation in `magit-log-mode'
+    ;; XXX: could be nice to use those, but they're shadowed by forces of `evil'
+    ;; (define-key magit-log-mode-map (kbd "j") 'magit-section-forward)
+    ;; (define-key magit-log-mode-map (kbd "k") 'magit-section-backward)
+    (define-key magit-log-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
+    (define-key magit-log-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
+    (magit-add-section-hook
+     'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+    )
 
   ;; Same applies to `Buffer-menu-mode'
   (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
@@ -664,9 +674,6 @@ before packages are loaded."
   ;; used only to insert an linefeed without indenting a new line.
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (setq electric-indent-mode nil)
-
-  ;; Wow, so simple while leaving `SPC g s' on charge
-  (define-key evil-normal-state-map (kbd "g s") 'magit-status)
 
   ;; Use widely supported shell instead of my own zsh
   (setenv "ESHELL" "bash")
