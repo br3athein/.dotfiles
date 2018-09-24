@@ -41,7 +41,7 @@ This function should only modify configuration layer settings."
      docker
      imenu-list
      nginx
-     pdf-tools
+     pdf
      prodigy
      (ranger :variables
              ranger-show-preview t
