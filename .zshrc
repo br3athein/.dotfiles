@@ -7,7 +7,7 @@ ZSH=/usr/share/oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -81,35 +81,42 @@ export EDITOR='vim'
 # Set up default shell user
 DEFAULT_USER=br3athein
 
-# Customize agnoster theme a bit
-if [ $ZSH_THEME = agnoster ]; then
-    prompt_context() {
-        if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-            prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-        fi
-    }
-
-    # Ranger prompt
-    prompt_ranger() {
-        if [ -n "$RANGER_LEVEL" ]; then
-            prompt_segment black blue "rng"
-        fi
-    }
-
-    ## Main prompt
-    build_prompt() {
-        RETVAL=$?
-        prompt_status
-        prompt_ranger
-        prompt_virtualenv
-        prompt_context
-        prompt_dir
-        prompt_git
-        prompt_bzr
-        prompt_hg
-        prompt_end
-    }
+# Start an SSH agent
+. ssh-find-agent.sh
+ssh-find-agent -a
+if [ -z "$SSH_AUTH_SOCK" ]
+then
+   eval $(ssh-agent) > /dev/null
+   ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 fi
+
+# Customize `spaceship` theme
+SPACESHIP_DIR_PREFIX=''
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+
+# Ranger prompt (to say, I love this API <3)
+SPACESHIP_RANGER_SHOW="${SPACESHIP_RANGER_SHOW=true}"
+SPACESHIP_RANGER_PREFIX="${SPACESHIP_RANGER_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"}"
+SPACESHIP_RANGER_SUFFIX="${SPACESHIP_RANGER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
+SPACESHIP_RANGER_SYMBOL="${SPACESHIP_RANGER_SYMBOL="¬ "}"
+SPACESHIP_RANGER_COLOR="${SPACESHIP_RANGER_COLOR="blue"}"
+
+spaceship_ranger() {
+    [[ $SPACESHIP_RANGER_SHOW == false ]] && return
+    spaceship::exists ranger || return
+    [[ -n "$RANGER_LEVEL" ]] || return
+    local 'ranger_status'
+    ranger_status="rng$RANGER_LEVEL"
+
+    spaceship::section \
+        "$SPACESHIP_RANGER_COLOR" \
+        "$SPACESHIP_RANGER_PREFIX" \
+        "$SPACESHIP_RANGER_SYMBOL$ranger_status" \
+        "$SPACESHIP_RANGER_SUFFIX"
+}
+
+SPACESHIP_PROMPT_ORDER=( "ranger" "${SPACESHIP_PROMPT_ORDER[@]}" )
 
 # Force Ranger to remember the last visited dir
 ranger-cd() {
