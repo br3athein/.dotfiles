@@ -39,9 +39,15 @@ This function should only modify configuration layer settings."
      ;; Tools
      csv
      docker
+     ibuffer
      imenu-list
+     ;; do u really need two GH frontends are being provided in parallel?
+     ;; `github' layer provides both `magithub' and `magit-gh-pulls' packages,
+     ;; and they seem to clash w/ each other, as far as I'm concerned
+     github
+     lsp
      nginx
-     pdf-tools
+     pdf
      prodigy
      (ranger :variables
              ranger-show-preview t
@@ -51,18 +57,21 @@ This function should only modify configuration layer settings."
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
      restructuredtext
-     semantic
+     (semantic :disabled-for emacs-lisp
+               :variables
+               semantic-idle-scheduler-queue '(semantic-fetch-tags)
+               )
      sphinx
      (treemacs :variables
-               treemacs-use-follow-mode t
-               treemacs-use-filewatch-mode t
-               treemacs-winum-number 0)
+               treemacs-use-follow-mode nil
+               treemacs-use-filewatch-mode t)
 
      ;; Languages
      html
      javascript
      lua
-     python
+     (python :variables
+             python-backend 'lsp)
      sql
      yaml
 
@@ -84,14 +93,19 @@ This function should only modify configuration layer settings."
      (git :variables
           git-magit-status-fullscreen t
           git-commit-fill-column 72
-          magit-revision-show-gravatars t
           magit-save-repository-buffers 'dontask)
      markdown
-     org
+     (org :variables
+          org-enable-org-journal-support t
+          org-journal-dir "~/org/journal/"
+          org-journal-file-format "%Y-%m-%d.org"
+          ;; org-projectile-file (concat (getenv "HOME") "/org/projectile/")
+          org-pomodoro-format "🍅 %s"
+          org-agenda-files '("~/org/"))
      (shell :variables
             shell-default-height '30
             shell-default-position 'bottom
-            shell-default-shell 'eshell
+            shell-default-shell 'ansi-term
             shell-enable-smart-eshell 't
             shell-protect-eshell-prompt 't)
      (spell-checking :variables
@@ -103,7 +117,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(realgud)
+   dotspacemacs-additional-packages '(po-mode minimap org-jira)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -174,6 +188,8 @@ It should only modify the values of Spacemacs settings."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
+                                (todos . 5)
+                                (agenda . 5)
                                 (projects . 7))
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -182,7 +198,12 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(obsidian
+   dotspacemacs-themes '(rebecca
+                         ;; purple-haze
+                         ;; zenburn
+                         ;; spacemacs-dark
+                         ;; material
+                         ;; soft-charcoal
                          leuven)
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
@@ -197,7 +218,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 15
                                :weight normal
                                :width normal)
@@ -383,7 +404,7 @@ It should only modify the values of Spacemacs settings."
    ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
    ;; %Z - like %z, but including the end-of-line format
    ;; (default "%I@%S")
-   dotspacemacs-frame-title-format "%I@%S"
+   dotspacemacs-frame-title-format "%I :: %n%t :: %a"
    ;; Format specification for setting the icon title format
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
@@ -416,12 +437,12 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Scroll Lock is back! :D
-  (global-set-key (kbd "<Scroll_Lock>") 'scroll-lock-mode)
-
   ;; Mode toggles
   (spacemacs/enable-transparency)
   (spaceline-toggle-minor-modes-off)
+  (spacemacs/toggle-smartparens-globally-on)
+  (spacemacs/toggle-mode-line-org-clock-on)
+  (evil-goggles-mode)
   (setq-default word-wrap t
                 truncate-lines t
                 )
@@ -433,6 +454,12 @@ before packages are loaded."
     "b C-r" 'rename-buffer
     "bl" 'buffer-menu-other-window
     "fet" 'dotspacemacs/test-dotfile
+
+    ;; Treemacs hate zone
+    "ft" 'treemacs-find-file
+    "fT" nil
+    "f C-t" nil
+
     "jQ" 'dumb-jump-go-other-window
     "jp" 'dumb-jump-go-prompt
     )
@@ -440,24 +467,47 @@ before packages are loaded."
   ;; `o' prefix
   (spacemacs/declare-prefix "o" "user binds")
   (evil-leader/set-key
+    "o gs" 'magit-save-repository-buffers
     "o ib" 'ispell-buffer
     "o mc" 'evil-mc-mode
+    "o mm" 'minimap-mode
     "o sc" 'sql-connect
+    "o fr" 'recover-this-file
     )
 
+  ;; Global (or close to global) userbinds
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-  (global-set-key (kbd "<C-tab>") 'company-complete)
+  ;; we're rebinding ~s~ to `magit-status' in the very next section
+  ;; ~S~ seems to overlap w/ ~s~ - basically does the same thing
+  (define-key evil-visual-state-map (kbd "S") 'evil-Surround-region)
+  (global-set-key (kbd "<f8>") 'treemacs)
 
-  ;; Simplify navigation in `magit-log-mode'
-  (require 'magit)
-  (define-key magit-log-mode-map (kbd "J")
-    (lambda () (interactive) (forward-line 10)))
-  (define-key magit-log-mode-map (kbd "K")
-    (lambda () (interactive) (forward-line -10)))
+  ;; `magit' customization
+  ;; TODO: consider putting more effort on `magit-dispatch-popup',
+  ;; bound to ~SPC g m~ by default, it looks handy :3
+  (define-key evil-normal-state-map (kbd "s") 'magit-status)
+  (with-eval-after-load 'magit
+    ;; load `magithub' ASAP, so one shouldn't trigger the load of it manually
+    (require 'magithub)
+    ;; Simplify navigation in `magit-log-mode'
+    ;; XXX: could be nice to use those, but they're shadowed by forces of `evil'
+    ;; (define-key magit-log-mode-map (kbd "j") 'magit-section-forward)
+    ;; (define-key magit-log-mode-map (kbd "k") 'magit-section-backward)
+    (define-key magit-log-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
+    (define-key magit-log-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
+    (magit-add-section-hook
+     'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+    )
 
   ;; Same applies to `Buffer-menu-mode'
   (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
   (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
+
+  ;; would like 2 use it inside Treemacs too
+  (with-eval-after-load 'treemacs
+    (define-key evil-treemacs-state-map (kbd "J") (lambda () (interactive) (treemacs-next-line 10)))
+    (define-key evil-treemacs-state-map (kbd "K") (lambda () (interactive) (treemacs-previous-line 10)))
+    )
 
   ;; Unbind n/N keys in `Buffer-menu-mode-map' to allow searching things
   (define-key Buffer-menu-mode-map (kbd "n") nil)
@@ -470,6 +520,17 @@ before packages are loaded."
   ;; Launch external Python debugger when in `python-mode'
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
+
+  (with-eval-after-load 'emmet-mode
+    (define-key emmet-mode-keymap (kbd "C-M-j") 'nil)
+    (define-key emmet-mode-keymap (kbd "C-j") 'nil)
+    )
+
+  (with-eval-after-load 'yasnippet
+    ; override `yas-next-field-or-maybe-expand' bind, since I don't
+    ; really wanna nest snippets into each other that often :P
+    (define-key yas-keymap (kbd "<tab>") 'yas-next-field)
+    )
 
   ;; Adding section "Ignored files" to Magit
   ;; Command to list ignored files:
@@ -486,21 +547,114 @@ before packages are loaded."
         (magit-insert-un/tracked-files-1 files nil)
         (insert ?\n))))
 
-  ;; Enable debugging
-  (load-library "realgud")
-
   ;; Custom hooks
-  (magit-add-section-hook
-   'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+  (add-hook 'csv-mode-hook (lambda () (csv-align-fields nil 1 (point-max))))
+  (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
+  (add-hook 'python-mode-hook 'spacemacs/toggle-camel-case-motion-on)
+
   (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
+  (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
 
-  (add-hook 'comint-mode-hook (lambda () (setq-local truncate-lines nil)))
+  (with-eval-after-load 'web-mode
+    (add-hook 'web-mode-hook 'turn-on-smartparens-mode)
+    (setq-default web-mode-markup-indent-offset 2)
+    )
+
+  (with-eval-after-load 'treemacs
+    (add-to-list 'treemacs-pre-file-insert-predicates 'treemacs-is-file-git-ignored?))
 
   ;; Navigation through HELM
-  (require 'helm)
-  (define-key helm-map (kbd "C-p") 'helm-previous-page)
-  (define-key helm-map (kbd "C-n") 'helm-next-page)
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-p") 'helm-previous-page)
+    (define-key helm-map (kbd "C-n") 'helm-next-page)
+    )
+
+  ;; `helm-ag' improvements
+  (with-eval-after-load 'helm-ag
+    (define-key helm-ag-map (kbd "C-M-k") 'helm-follow-action-backward)
+    (define-key helm-ag-map (kbd "C-M-j") 'helm-follow-action-forward)
+    )
+
+  ;; projectile
+  (with-eval-after-load 'projectile
+    (add-to-list 'projectile-globally-ignored-directories ".ropeproject")
+    (add-to-list 'projectile-globally-ignored-directories ".mypy_cache")
+    )
+
+  (with-eval-after-load 'org
+    ;; load org-projectile ASAP, we need it to build an informative agenda
+    (require 'org-projectile)
+    ;; XXX: the whole block would be a purely dead code after switching to
+    ;; functioned agenda (the latter is TBD).
+    ;; Source `org-projectile-files' in `org-agenda' buffers.
+    ;; ignores `org-projectile' TODOs.org files created after Emacs is initialized.
+    ;; Not a major issue tho, refresh can be easily triggered by calling
+    ;; `dotspacemacs/sync-configuration-layers', which is bound to =SPC f e R=.
+    (mapcar (lambda (projectile-todo-file)
+              (when (file-exists-p projectile-todo-file)
+                (add-to-list 'org-agenda-files projectile-todo-file t)))
+            (org-projectile-todo-files))
+
+    ;; Expand list of possible task states
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "WIP(s)" "REVIEW(i)" "|" "DONE(d)")
+            (sequence "REPORT(r)" "BUG(b)" "KNOWNC(k)" "|" "FIXED(f)")
+            (type "LOCKED(l)" "|" "CANCEL(c)" "PASSED(p)"))
+          org-clock-persist t
+          org-clock-idle-time 10
+          org-enforce-todo-checkbox-dependencies t
+          org-enforce-todo-dependencies t)
+    (setq org-todo-keyword-faces
+          '(("WIP" . (:foreground "DeepSkyBlue1"))
+            ("REVIEW" . (:foreground "MediumSlateBlue"))
+            ("REPORT" . (:foreground "goldenrod"))
+            ("BUG" . (:foreground "tomato"))
+            ("KNOWNC" . (:foreground "MediumSlateBlue"))
+            ("LOCKED" . (:foreground "firebrick"))
+            ("CANCEL" . (:foreground "pink")))
+          org-capture-templates
+          (quote
+           (("n" "Note" entry (file "~/org/notes.org")
+             "")
+            ("g" "General" entry (file "~/org/general.org")
+             "")
+            ("G" "General (clock in)" entry (file "~/org/general.org")
+             "" :clock-in t :clock-resume t)
+            ("t" "Task" entry (file "~/org/journal/landing-bay.org")
+             "* TODO %^{Generic name} %?\n")
+            ("r" "Catchall for reviews" entry (file "~/org/reviews.org")
+             "* Review %^{PR link}" :clock-in t :clock-resume t :prepend t)
+            ("j" "Journal entry (usage is discouraged)" entry (file+datetree "~/org/journal/journal.org")
+             "%^G* %<%R> %?\n")
+            )))
+    ;; `org-clocktable' configuration
+    ;; basically, purpose is to ignore zero-length timelogs and agenda
+    ;; files w/ no timelogs in the scope
+    ;; (file|step)skip0 both altered nil -> t
+    ;; TODO: can't shake the feeling that I'm just underqualified to make this
+    ;; piece look good, cause there's no need to overwrite the whole variable :3
+    (setq org-clocktable-defaults
+          '(:maxlevel 2 :lang "en" :scope file :block nil :wstart 1 :mstart 1
+                      :tstart nil :tend nil :step nil :stepskip0 t :fileskip0 t
+                      :tags nil :emphasize nil :link nil :narrow 40! :indent t
+                      :formula nil :timestamp nil :level nil :tcolumns nil
+                      :formatter nil))
+    (org-clock-persistence-insinuate)
+
+    ;; Allow setting priorities on TODOs in `org-mode'
+    (evil-leader/set-key-for-mode 'org-mode (kbd "i #") 'org-priority)
+    (evil-leader/set-key-for-mode 'org-mode (kbd "C R") 'org-evaluate-time-range)
+    )
+
+  (with-eval-after-load 'org-agenda
+    (define-key org-agenda-keymap "P" 'org-pomodoro)
+    )
+
+  ;; Additional ghetto
+  (with-eval-after-load 'minimap-mode
+    (setq-local minimap-window-location 'right)
+    )
 
   ;; Launch diff on currently selected buffers - still WIP
   (defun diff-current-layout ()
@@ -527,9 +681,6 @@ before packages are loaded."
   ;; used only to insert an linefeed without indenting a new line.
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (setq electric-indent-mode nil)
-
-  ;; Wow, so simple while leaving `SPC g s' on charge
-  (define-key evil-normal-state-map (kbd "g s") 'magit-status)
 
   ;; Use widely supported shell instead of my own zsh
   (setenv "ESHELL" "bash")
