@@ -689,8 +689,11 @@ before packages are loaded."
   (load "prodigy-services")
   )
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -702,4 +705,20 @@ before packages are loaded."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(ediff-current-diff-B ((t (:background "dark green"))))
+ '(ediff-even-diff-A ((t (:background "gray25"))))
+ '(ediff-even-diff-B ((t (:background "grey20"))))
+ '(ediff-even-diff-C ((t (:background "gray25"))))
+ '(ediff-fine-diff-B ((t (:background "#114422"))))
+ '(ediff-odd-diff-A ((t (:background "gray20"))))
+ '(ediff-odd-diff-B ((t (:background "gray25"))))
+ '(ediff-odd-diff-C ((t (:background "gray20"))))
+ '(flycheck-error ((t (:underline "Red1"))))
+ '(flycheck-info ((t (:underline "ForestGreen"))))
+ '(flycheck-warning ((t (:underline "DarkOrange"))))
+ '(flyspell-duplicate ((t (:underline "DarkOrange"))))
+ '(flyspell-incorrect ((t (:underline "Red1"))))
+ '(hi-yellow ((t (:background "dark slate blue" :foreground "light goldenrod"))))
+ '(lsp-face-highlight-read ((t (:background "dark slate blue"))))
+ '(lsp-face-highlight-write ((t (:background "MediumOrchid4")))))
+)
