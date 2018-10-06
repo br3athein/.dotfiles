@@ -104,10 +104,16 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end},
 }
 
+mylaunchmenu = {
+   { "Spacemacs", "spacemacs"},
+   { "Firefox", "firefox" },
+   { "qutebrowser", "qutebrowser" },
+}
+
 mymainmenu = awful.menu({
     items = {
+      { "launch...", mylaunchmenu, beautiful.awesome_icon },
       { "awesome", myawesomemenu, beautiful.awesome_icon },
-      { "open terminal", terminal },
     }
 })
 
