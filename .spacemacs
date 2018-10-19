@@ -642,14 +642,7 @@ before packages are loaded."
     ;; basically, purpose is to ignore zero-length timelogs and agenda
     ;; files w/ no timelogs in the scope
     ;; (file|step)skip0 both altered nil -> t
-    ;; TODO: can't shake the feeling that I'm just underqualified to make this
-    ;; piece look good, cause there's no need to overwrite the whole variable :3
-    (setq org-clocktable-defaults
-          '(:maxlevel 2 :lang "en" :scope file :block nil :wstart 1 :mstart 1
-                      :tstart nil :tend nil :step nil :stepskip0 t :fileskip0 t
-                      :tags nil :emphasize nil :link nil :narrow 40! :indent t
-                      :formula nil :timestamp nil :level nil :tcolumns nil
-                      :formatter nil))
+    (setq org-clocktable-defaults '(:stepskip0 t :fileskip0 t))
     (org-clock-persistence-insinuate)
 
     ;; Allow setting priorities on TODOs in `org-mode'
