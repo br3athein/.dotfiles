@@ -456,7 +456,7 @@ before packages are loaded."
   ;; Custom binds
   (evil-leader/set-key
     "`" 'treemacs-select-window
-    "Da" 'docker-container-shell
+    "aDa" 'docker-container-shell
     "b C-r" 'rename-buffer
     "bl" 'buffer-menu-other-window
     "fet" 'dotspacemacs/test-dotfile
