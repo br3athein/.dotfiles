@@ -717,6 +717,10 @@ before packages are loaded."
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (setq electric-indent-mode nil)
 
+  ;; Display "OMG WE'RE OUTSIDE OF THE PROJECT AND WE'RE ALL GONNA DIE" message
+  ;; as a warning instead of popping up a whole fucking window just to tell me that
+  (setq lsp-message-project-root-warning t)
+
   ;; Use widely supported shell instead of my own zsh
   (setenv "ESHELL" "bash")
 
