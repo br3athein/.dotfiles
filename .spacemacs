@@ -651,6 +651,22 @@ before packages are loaded."
     ;; Allow setting priorities on TODOs in `org-mode'
     (evil-leader/set-key-for-mode 'org-mode (kbd "i #") 'org-priority)
     (evil-leader/set-key-for-mode 'org-mode (kbd "C R") 'org-evaluate-time-range)
+
+    ;; might serve as a handy helper someday...
+    (defun my-extract-deepest-directory-name (file-or-directory-path)
+      "Return a basename of a directory that is deepest in a given path."
+      ;; TODO: doesn't validate whether a given param is really a filename
+      (file-name-nondirectory (directory-file-name (file-name-directory file-or-directory-path))))
+
+    ;; reasoning is questionable, worked w/o this
+    (org-projectile-per-project-strategy)
+
+    ;; necessary, used to distinct per-project filenames (root dir name, usually)
+    (setq org-projectile-per-project-filepath
+          (lambda (project-path)
+            (concat (my-extract-deepest-directory-name project-path) ".org"))
+          org-projectile-projects-directory
+          (concat (expand-file-name org-directory) "/projectile/"))
     )
 
   (with-eval-after-load 'org-agenda
