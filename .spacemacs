@@ -696,7 +696,16 @@ before packages are loaded."
   (evil-leader/set-key
     (kbd "b C-d") 'diff-current-layout
     (kbd "t t") 'touchpad-toggle
+    "o sk" 'toggle-shell-pop-autocd
     )
+
+  (with-eval-after-load 'shell
+    (defun toggle-shell-pop-autocd ()
+      (interactive)
+      (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
+      (message "pop-shell autocd mode: %s" shell-pop-autocd-to-working-dir))
+    (evil-leader/set-key "o sk" 'toggle-shell-pop-autocd)
+    (evil-set-initial-state 'term-mode 'emacs))
 
   ;; Disable strange 'new' feature
   ;; seems like `electric-indent-mode' belongs to vanilla Emacs solely and is
