@@ -489,9 +489,8 @@ before packages are loaded."
   (global-set-key (kbd "<f8>") 'treemacs)
 
   ;; `magit' customization
-  ;; TODO: consider putting more effort on `magit-dispatch-popup',
-  ;; bound to ~SPC g m~ by default, it looks handy :3
   (define-key evil-normal-state-map (kbd "s") 'magit-status)
+  (define-key evil-normal-state-map (kbd "S") 'magit-dispatch-popup)
   (with-eval-after-load 'magit
     ;; load `magithub' ASAP, so one shouldn't trigger the load of it manually
     (require 'magithub)
