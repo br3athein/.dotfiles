@@ -145,8 +145,8 @@ alias ranger='ranger-cd'
 # Handy!
 alias zshconfig="$EDITOR ~/.zshrc"
 alias reload='exec zsh'
-alias py2='python2'
-alias py3='python3'
+alias py2='ipython2'
+alias py3='ipython3'
 
 prompt_context() {
     if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
