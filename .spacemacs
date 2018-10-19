@@ -550,7 +550,7 @@ before packages are loaded."
     (-when-let (files (magit-ignored-files))
       (magit-insert-section (ignored nil t)
         (magit-insert-heading "Ignored files:")
-        (magit-insert-un/tracked-files-1 files nil)
+        (magit-insert-files files nil)
         (insert ?\n))))
 
   ;; Custom hooks
