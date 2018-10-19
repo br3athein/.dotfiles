@@ -451,6 +451,7 @@ before packages are loaded."
   (evil-goggles-mode)
   (setq-default word-wrap t
                 truncate-lines t
+                create-lockfiles nil
                 )
 
   ;; Custom binds
