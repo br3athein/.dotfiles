@@ -221,6 +221,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({ position = "bottom", screen = s })
 
     -- Add widgets to the wibox
+    mysystray = wibox.widget.systray()
+    mysystray.forced_width = 65
     s.mywibox:setup {
       layout = wibox.layout.align.horizontal,
       { -- Left widgets
@@ -233,7 +235,7 @@ awful.screen.connect_for_each_screen(function(s)
       { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         mykeyboardlayout,
-        wibox.widget.systray(),
+        mysystray,
         spotify_widget,
         volume_widget,
         battery_widget,
@@ -243,6 +245,7 @@ awful.screen.connect_for_each_screen(function(s)
       },
     }
 end)
+
 -- }}}
 
 -- {{{ Mouse bindings
