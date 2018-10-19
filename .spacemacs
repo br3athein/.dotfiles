@@ -122,6 +122,7 @@ This function should only modify configuration layer settings."
      po-mode
      minimap
      org-jira
+     (org-projectile :location "~/.spacemacs.d/customized-packages/org-projectile")
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()

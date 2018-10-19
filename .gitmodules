@@ -4,3 +4,6 @@
 [submodule "awesome/awesome-wm-widgets"]
 	path = awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
+[submodule ".spacemacs.d/customized-packages/org-projectile"]
+	path = .spacemacs.d/customized-packages/org-projectile
+	url = git@github.com:br3athein/org-projectile.git
