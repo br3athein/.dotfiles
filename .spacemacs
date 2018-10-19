@@ -570,6 +570,9 @@ before packages are loaded."
     (treemacs-git-mode 'simple)
     (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?))
 
+  (with-eval-after-load 'treemacs-projectile
+    (define-key evil-normal-state-map (kbd "<C-f8>") 'treemacs-projectile))
+
   ;; Navigation through HELM
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-p") 'helm-previous-page)
