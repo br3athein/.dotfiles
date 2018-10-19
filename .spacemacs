@@ -567,7 +567,8 @@ before packages are loaded."
     )
 
   (with-eval-after-load 'treemacs
-    (add-to-list 'treemacs-pre-file-insert-predicates 'treemacs-is-file-git-ignored?))
+    (treemacs-git-mode 'simple)
+    (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?))
 
   ;; Navigation through HELM
   (with-eval-after-load 'helm
