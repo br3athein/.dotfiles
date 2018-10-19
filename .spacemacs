@@ -682,6 +682,7 @@ before packages are loaded."
     (setq-local minimap-window-location 'right)
     )
 
+  ;; Self-authored helper defuns
   ;; Launch diff on currently selected buffers - still WIP
   (defun diff-current-layout ()
     (interactive)
@@ -696,10 +697,11 @@ before packages are loaded."
     (interactive)
     (shell-command "touchpad-toggle"))
 
-  ;; Binds for own defuns
+  ;; Bind that homemade stuff somewhere
+  ;; Bring it on home \m/
   (evil-leader/set-key
-    (kbd "b C-d") 'diff-current-layout
-    (kbd "t t") 'touchpad-toggle
+    "b C-d" 'diff-current-layout
+    "t t" 'touchpad-toggle
     "o sk" 'toggle-shell-pop-autocd
     )
 
