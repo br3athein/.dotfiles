@@ -68,10 +68,12 @@ This function should only modify configuration layer settings."
 
      ;; Languages
      html
+     ipython-notebook
      javascript
      lua
      (python :variables
              python-backend 'lsp)
+     php
      sql
      yaml
 
