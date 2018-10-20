@@ -538,15 +538,18 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
   ;; Mode toggles
   (spacemacs/enable-transparency)
-  (spaceline-toggle-minor-modes-off)
   (spacemacs/toggle-smartparens-globally-on)
   (spacemacs/toggle-mode-line-org-clock-on)
-  (evil-goggles-mode)
+  (spaceline-toggle-minor-modes-off)
+
   (setq-default word-wrap t
                 truncate-lines t
                 create-lockfiles nil
+                vim-style-remap-Y-to-y$ t
+                vim-style-visual-feedback t
                 )
 
   ;; Custom binds
