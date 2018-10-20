@@ -555,31 +555,37 @@ awful.rules.rules = {
   -- { rule = { class = "Firefox" },
   --   properties = { screen = 1, tag = "2" } },
 
-  { rule = { class = "Google-chrome" },
-    except = { role = "GtkFileChooserDialog" },
-    properties = { screen = 1, tag = tags[ 2] } },
-  { rule = { class = "Firefox"       },
-    except = { role = "GtkFileChooserDialog" },
-    properties = { screen = 1, tag = tags[ 2] } },
+  -- Exclusive rule
   { rule = { class = "Emacs"         },
     properties = { screen = 1, tag = tags[ 3],
                    maximized = true } },
-  { rule = { class = "Spotify"       },
-    properties = { screen = 1, tag = tags[ 5] } },
-  { rule = { class = "Nemo"          },
-    properties = { screen = 1, tag = tags[ 6] } },
-  { rule = { class = "Pinta"         },
-    properties = { screen = 1, tag = tags[ 7] } },
-  { rule = { class = "Wps"           },
-    properties = { screen = 1, tag = tags[ 8] } },
-  { rule = { class = "libreoffice"   },
-    properties = { screen = 1, tag = tags[ 8] } },
-  { rule = { class = "Steam"         },
-    properties = { screen = 1, tag = tags[ 9] } },
-  { rule = { class = "TelegramDesktop"      },
-    properties = { screen = 1, tag = tags[10] } },
-  { rule = { class = "Skype"         },
-    properties = { screen = 1, tag = tags[10] } },
+
+  { rule_any = { class = {
+        "Google-chrome",
+        "Firefox",
+      }, except = { role = "GtkFileChooserDialog" }
+  }, properties = { screen = 1, tag = tags[ 2] } },
+  { rule_any = { class = {
+        "Spotify",
+        "Google Play Music Desktop Player",
+  } }, properties = { screen = 1, tag = tags[ 5] } },
+  { rule_any = { class = {
+        "Nemo",
+  } }, properties = { screen = 1, tag = tags[ 6] } },
+  { rule_any = { class = {
+        "Pinta",
+  } }, properties = { screen = 1, tag = tags[ 7] } },
+  { rule_any = { class = {
+        "Wps",
+        "libreoffice",
+  } }, properties = { screen = 1, tag = tags[ 8] } },
+  { rule_any = { class = {
+        "Steam",
+  } }, properties = { screen = 1, tag = tags[ 9] } },
+  { rule_any = { class = {
+        "TelegramDesktop",
+        "Skype",
+  } }, properties = { screen = 1, tag = tags[10] } },
 }
 -- }}}
 
