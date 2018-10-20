@@ -16,6 +16,6 @@ run pulseaudio --start
 run compton --config /home/br3athein/.compton.conf
 
 # kick off apps in background
-run spotifywm
+run gpmdp
 run telegram-desktop
 run skypeforlinux
