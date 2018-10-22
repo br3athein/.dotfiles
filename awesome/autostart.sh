@@ -7,6 +7,9 @@ function run {
     fi
 }
 
+# pre-run
+xrdb -merge ~/.Xresources
+
 # exec once on boot
 perWindowLayoutD
 
@@ -22,9 +25,19 @@ setxkbmap \
 
 run pulseaudio --start
 
-run compton --config /home/br3athein/.compton.conf
+run compton --config /home/a-kostyuk/.compton.conf
+
+# kick off some apps in background
+run spacemacs
+run telegram
+run rocketchat
+run hipchat4
+run firefox
+run chrome
+run gtimelog
+run qutebrowser
 
 # kick off apps in background
-run gpmdp
 run telegram-desktop
 run unclutter -root  # doesn't play really well w/ awesome, thus xperimental
+run google-play-music-desktop-player

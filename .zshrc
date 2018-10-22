@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh
+  export ZSH=/home/a-kostyuk/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -26,7 +26,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -47,14 +47,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Store cache at home
-ZSH_CACHE_DIR=".cache/oh-my-zsh"
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose archlinux virtualenvwrapper)
+plugins=(git docker docker-compose virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,16 +79,7 @@ export EDITOR='vim'
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set up default shell user
-DEFAULT_USER=br3athein
-
-# Start an SSH agent
-. ssh-find-agent.sh
-ssh-find-agent -a
-if [ -z "$SSH_AUTH_SOCK" ]
-then
-   eval $(ssh-agent) > /dev/null
-   ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
-fi
+DEFAULT_USER=a-kostyuk
 
 # Customize `spaceship` theme
 SPACESHIP_DIR_PREFIX=''
@@ -167,8 +155,73 @@ alias dral='docker run --rm -it base/archlinux:latest'
 # Docker: resolve IP
 alias drip='docker inspect --format='\''{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'\'
 
+# Too much aliases
+alias sally=' alias | ag'
+
+# Git extensions
+alias grom='git remote update && git rebase origin/master'
+
 # Multihead setups
 alias multihead-left='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --left-of eDP-1'
 alias multihead-right='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --right-of eDP-1'
+
+alias drm='docker run --rm -it'
+alias dcrm='docker-compose run --rm'
+alias rdev='ranger ~/develop'
+
+# Camptocamp specific CLI tools
+
+alias dcnuke='docker-compose down -v'
+
+# XXX: under demolishment, dodoo ftw
+# TODO: drop, move to ~/bin/clit
+alias rebuild-nosync='git checkout master && git pull --rebase && git submodule update --init && docker-compose build --no-cache && dodoo run -p 1337 --stop-after-init && git checkout - && notify-send -t 0 -i ~/Pictures/master-race.jpg '\''hey m8 your build is finished'\'' $(pwd)'
+
+alias yuno='watch flake8 . --exclude=__init__.py'
+alias gsss='git submodule sync && git submodule update --init'
+
+# save for blacker days
+# alias yolo="git add . && git commit -m 'DEAL WITH IT' && git push -f origin/master"
+
+export WORKON_HOME='/home/a-kostyuk/.virtualenvs'
+export VIRTUAL_ENV_DISABLE_PROMPT='True'
+
+# update Spacemacs in one keystroke
+# alias spacemacs-update="git -C ~/.emacs.d/ remote update && git -C ~/.emacs.d/ log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset origin/develop@{1}..origin/develop' && git -C ~/.emacs.d/ rebase origin/develop"
+alias spacemacs-update="git -C ~/.emacs.d/ pull --rebase origin && git -C ~/.emacs.d/ log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' origin/develop@{1}..origin/develop"
+
+export SPACESHIP_DOCKER_SHOW=false
+
+# Invoke tab-completion script to be sourced with the Z shell.
+# Known to work on zsh 5.0.x, probably works on later 4.x releases as well (as
+# it uses the older compctl completion system).
+
+_complete_invoke() {
+    # `words` contains the entire command string up til now (including
+    # program name).
+    #
+    # We hand it to Invoke so it can figure out the current context: spit back
+    # core options, task names, the current task's options, or some combo.
+    #
+    # Before doing so, we attempt to tease out any collection flag+arg so we
+    # can ensure it is applied correctly.
+    collection_arg=''
+    if [[ "${words}" =~ "(-c|--collection) [^ ]+" ]]; then
+        collection_arg=$MATCH
+    fi
+    # `reply` is the array of valid completions handed back to `compctl`.
+    # Use ${=...} to force whitespace splitting in expansion of
+    # $collection_arg
+    reply=( $(invoke ${=collection_arg} --complete -- ${words}) )
+}
+
+
+# Tell shell builtin to use the above for completing our given binary name(s).
+# * -K: use given function name to generate completions.
+# * +: specifies 'alternative' completion, where options after the '+' are only
+#   used if the completion from the options before the '+' result in no matches.
+# * -f: when function generates no results, use filenames.
+# * positional args: program names to complete for.
+compctl -K _complete_invoke + -f invoke inv
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

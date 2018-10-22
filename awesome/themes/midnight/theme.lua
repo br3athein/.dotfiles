@@ -12,11 +12,11 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = "/home/br3athein/Pictures/Wallpapers/mountain-glow.png"
+theme.wallpaper = "/home/a-kostyuk/.dotfiles/Wallpapers/haskell-purple.jpg"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "xos4 terminess powerline 12" -- i fairly doubt it would work everywhere.
+theme.font      = "Terminess Powerline" -- i fairly doubt it would work everywhere.
 
 -- {{{ Colors
 theme.fg_normal  = "#1f3d6d"

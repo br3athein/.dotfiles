@@ -56,7 +56,8 @@ for s = 1, screen.count() do
 end
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvtc"
+-- terminal = "urxvtc"
+terminal = "gnome-terminal"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -73,6 +74,7 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
+    awful.layout.suit.tile.bottom,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.magnifier,
@@ -105,9 +107,9 @@ myawesomemenu = {
 }
 
 mylaunchmenu = {
-   { "Spacemacs", "spacemacs"},
-   { "Firefox", "firefox" },
-   { "qutebrowser", "qutebrowser" },
+  { "Spacemacs", "spacemacs" },
+  { "Firefox", "firefox" },
+  { "qutebrowser", "Qutebrowser" },
 }
 
 mymainmenu = awful.menu({
@@ -191,14 +193,16 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local tags = {
+  "", "", "", "", "", "", "", "", "", "",
+}
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({
-        "", "", "", "", "", "", "", "", "", "",
-              }, s, awful.layout.layouts[1])
+    awful.tag(tags, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -222,7 +226,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Add widgets to the wibox
     mysystray = wibox.widget.systray()
-    mysystray.forced_width = 65
+    mysystray.forced_width = 90
     s.mywibox:setup {
       layout = wibox.layout.align.horizontal,
       { -- Left widgets
@@ -296,8 +300,11 @@ globalkeys = gears.table.join(
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey,           }, "l", function () awful.screen.focus_relative( 1) end,
               {description = "focus the previous screen", group = "screen"}),
-    awful.key({ modkey, "Shift"   }, "s", function (c) awful.client.movetoscreen(c)   end,
-              {description = "move client to next screen", group = "client"}),
+
+    -- Move stuff across screens
+    awful.key({ modkey, "Shift"   }, "s", awful.client.movetoscreen,
+              {description = "move window to another screen", group = "screen"}),
+
     awful.key({ modkey,           }, "y", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "Tab",
@@ -359,10 +366,6 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioPlay", function ()
         awful.util.spawn("playerctl play-pause") end),
 
-    -- Touchpad control
-    awful.key({ }, "XF86TouchpadToggle", function ()
-        awful.util.spawn("touchpad-toggle") end),
-
     -- Screenshots
     awful.key({ }, "Print",         function ()
         awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end),
@@ -370,6 +373,16 @@ globalkeys = gears.table.join(
     -- Prompt
     awful.key({ modkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
+
+    -- awful.key({ modkey },            "d",     function ()
+    --     awful.util.spawn_with_shell("rofi -show run -lines 3 -eh 2 -width 100"
+    --       .. " -line-margin 17 -padding 320 -opacity 85 -bw 0 -separator-style none"
+    --       .. " -color-window '#030e21, #00ff00, #030e21'"
+    --       .. " -color-normal '#030e21, #9ab3e2, #030e21, #030e21, #9575cd'"
+    --       .. " -color-active '#030e21, #9ab3e2, #030e21, #030e21, #030e21'"
+    --       .. " -color-urgent '#030e21, #9ab3e2, #2923db, #9ab3e2, #030e21'"
+    --       ) end,
+    --   {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -492,9 +505,6 @@ root.keys(globalkeys)
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 
--- Running on a bunch of custom tags, so we have a need to resolve them on the fly.
-local tags = awful.screen.focused().tags;
-
 awful.rules.rules = {
   -- All clients will match this rule.
   { rule = { },
@@ -543,9 +553,10 @@ awful.rules.rules = {
     properties = { titlebars_enabled = false },
   },
 
-  -- Add titlebars to dialogs
+  -- Add titlebars to dialogs though
   { rule_any = { type = { "dialog" } },
     properties = { titlebars_enabled = true },
+    -- also start them centered
     callback = function (c)
       awful.placement.centered(c, nil)
     end,
@@ -564,28 +575,31 @@ awful.rules.rules = {
         "Google-chrome",
         "Firefox",
       }, except = { role = "GtkFileChooserDialog" }
-  }, properties = { screen = 1, tag = tags[ 2] } },
+  }, properties = { screen = 2, tag = tags[ 2] } },
+  { rule_any = { class = {
+        "gtimelog",
+  } }, properties = { screen = 1, tag = tags[ 4] } },
   { rule_any = { class = {
         "Spotify",
         "Google Play Music Desktop Player",
-  } }, properties = { screen = 1, tag = tags[ 5] } },
+  } }, properties = { screen = 2, tag = tags[ 5] } },
   { rule_any = { class = {
         "Nemo",
-  } }, properties = { screen = 1, tag = tags[ 6] } },
+  } }, properties = {             tag = tags[ 6] } },
   { rule_any = { class = {
         "Pinta",
-  } }, properties = { screen = 1, tag = tags[ 7] } },
+  } }, properties = {             tag = tags[ 7] } },
   { rule_any = { class = {
         "Wps",
         "libreoffice",
-  } }, properties = { screen = 1, tag = tags[ 8] } },
+  } }, properties = { screen = 2, tag = tags[ 8] } },
   { rule_any = { class = {
         "Steam",
-  } }, properties = { screen = 1, tag = tags[ 9] } },
+  } }, properties = { screen = 2, tag = tags[ 9] } },
   { rule_any = { class = {
         "TelegramDesktop",
         "Skype",
-  } }, properties = { screen = 1, tag = tags[10] } },
+  } }, properties = { screen = 2, tag = tags[10] } },
 }
 -- }}}
 

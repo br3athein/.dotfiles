@@ -34,6 +34,7 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ruby
      ;; Look&feel
      (colors :variables
              colors-enable-nyan-cat-progress-bar nil)
@@ -56,19 +57,18 @@ This function should only modify configuration layer settings."
      (ranger :variables
              ranger-show-preview t
              ranger-show-literal nil
-             ranger-parent-depth 0
              ranger-override-dired t
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
      restructuredtext
      (semantic :disabled-for emacs-lisp
                :variables
-               semantic-idle-scheduler-queue '(semantic-fetch-tags)
-               )
+               semantic-idle-scheduler-queue '(semantic-fetch-tags))
      sphinx
      (treemacs :variables
                treemacs-use-follow-mode nil
-               treemacs-use-filewatch-mode t)
+               treemacs-use-filewatch-mode t
+               treemacs-lock-width t)
 
      ;; Languages
      html
@@ -577,6 +577,7 @@ before packages are loaded."
     "o mc" 'evil-mc-mode
     "o mm" 'minimap-mode
     "o sc" 'sql-connect
+    "o st" 'toggle-shell-pop-autocd
     "o fr" 'recover-this-file
     )
 
@@ -586,6 +587,7 @@ before packages are loaded."
   ;; ~S~ seems to overlap w/ ~s~ - basically does the same thing
   (define-key evil-visual-state-map (kbd "S") 'evil-Surround-region)
   (global-set-key (kbd "<f8>") 'treemacs)
+  (global-set-key (kbd "<C-f8>") 'treemacs-projectile)
 
   ;; `magit' customization
   (define-key evil-normal-state-map (kbd "s") 'magit-status)
@@ -660,6 +662,10 @@ before packages are loaded."
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
 
+  ;; Lil' PyCharm-y feature
+  ;; TODO control it w/ a toggle
+  ;; (add-hook 'focus-out-hook (lambda () (magit-save-repository-buffers t)))
+
   (with-eval-after-load 'web-mode
     (add-hook 'web-mode-hook 'turn-on-smartparens-mode)
     (setq-default web-mode-markup-indent-offset 2)
@@ -671,6 +677,9 @@ before packages are loaded."
 
   (with-eval-after-load 'treemacs-projectile
     (define-key evil-normal-state-map (kbd "<C-f8>") 'treemacs-projectile))
+
+  (with-eval-after-load 'shell
+    (evil-set-initial-state 'term-mode 'emacs))
 
   ;; Navigation through HELM
   (with-eval-after-load 'helm
@@ -690,19 +699,55 @@ before packages are loaded."
     (add-to-list 'projectile-globally-ignored-directories ".mypy_cache")
     )
 
+  ;; in the case u wander here just to shut down stupid warning spam - just put
+  ;; a directory named `setup' in your project root // br3athein
+
   (with-eval-after-load 'org
     ;; load org-projectile ASAP, we need it to build an informative agenda
     (require 'org-projectile)
-    ;; XXX: the whole block would be a purely dead code after switching to
-    ;; functioned agenda (the latter is TBD).
-    ;; Source `org-projectile-files' in `org-agenda' buffers.
-    ;; ignores `org-projectile' TODOs.org files created after Emacs is initialized.
-    ;; Not a major issue tho, refresh can be easily triggered by calling
-    ;; `dotspacemacs/sync-configuration-layers', which is bound to =SPC f e R=.
-    (mapcar (lambda (projectile-todo-file)
-              (when (file-exists-p projectile-todo-file)
-                (add-to-list 'org-agenda-files projectile-todo-file t)))
-            (org-projectile-todo-files))
+    ;; ;; XXX: the whole block would be a purely dead code after switching to
+    ;; ;; functioned agenda (the latter is TBD).
+    ;; ;; Source `org-projectile-files' in `org-agenda' buffers.
+    ;; ;; ignores `org-projectile' TODOs.org files created after Emacs is initialized.
+    ;; ;; Not a major issue tho, refresh can be easily triggered by calling
+    ;; ;; `dotspacemacs/sync-configuration-layers', which is bound to =SPC f e R=.
+    ;; (mapcar (lambda (projectile-todo-file)
+    ;;           (when (file-exists-p projectile-todo-file)
+    ;;             (add-to-list 'org-agenda-files projectile-todo-file t)))
+    ;;         (org-projectile-todo-files))
+
+    ;; XXX: would still set a fucking relative path to a project root. What a bullshit. Meh.
+    ;; I.e., ~/develop/project/home/me/org/projectile/project.org
+    ;; XXX: Dead [code] ahead
+    ;; (setq org-projectile-per-project-filepath
+    ;;       (lambda (filepath) (concat (getenv "HOME") "/org/projectile/" (projectile-project-name) ".org")))
+    ;; (add-to-list 'org-agenda-files "~/org/projectile/")
+
+    ;; hey, there's https://github.com/IvanMalison/org-projectile/pull/42 to solve the above
+    ;; HACK: now it should be done manually AFTER the core is loaded
+    ;; proceed to initialization
+    (setq org-projectile-projects-directory
+          (concat (file-name-as-directory org-directory) (file-name-as-directory "projectile"))
+          org-projectile-per-project-filepath
+          (lambda (project-path)
+            (concat
+             (file-name-nondirectory (directory-file-name (file-name-directory project-path)))
+             ".org")))
+    (add-to-list 'org-agenda-files org-projectile-projects-directory)
+
+    (defun my-migrate-todos ()
+      "Custom `org-projectile' migration helper: stack up existing TODOs in a designated dir."
+      (interactive)
+      (let* ((old-path (concat (projectile-project-root) "TODOs.org"))
+             (new-path (concat org-projectile-projects-directory (projectile-project-name) ".org")))
+        (unless (projectile-project-p)
+          (error "Can't migrate %s to %s: %s" old-path new-path "not in the project"))
+        (unless (file-exists-p old-path)
+          (error "Can't migrate %s to %s: %s" old-path new-path "source is absent"))
+        (unless (not (file-exists-p new-path))
+          (error "Can't migrate %s to %s: %s" old-path new-path "target exists"))
+        (add-name-to-file old-path new-path)
+        (message "Successfully hardlinked %s to %s. Sleep tight." old-path new-path)))
 
     ;; Expand list of possible task states
     (setq org-todo-keywords
@@ -782,11 +827,21 @@ before packages are loaded."
        (car current-layout-buffers)
        (cadr current-layout-buffers))))
 
-  ;; Toggle touchpad from inside Spacemacs
-  (defun touchpad-toggle ()
-    "Runs an external homebrew script that toggles touchpad state."
+  (defun lock-screen ()
+    "Lock screen using (zone) and xtrlock
+calls M-x zone on all frames and runs xtrlock"
     (interactive)
-    (shell-command "touchpad-toggle"))
+    (save-excursion
+      (set-process-sentinel
+       (start-process "xtrlock" nil "xtrlock")
+       '(lambda (process event)
+          (zone-leave-me-alone)))
+      (zone)))
+
+  (defun toggle-shell-pop-autocd ()
+    (interactive)
+    (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
+    (message "shell-pop-autocd-to-working-dir: %s" shell-pop-autocd-to-working-dir))
 
   ;; Bind that homemade stuff somewhere
   ;; Bring it on home \m/
@@ -794,6 +849,9 @@ before packages are loaded."
     "b C-d" 'diff-current-layout
     "t t" 'touchpad-toggle
     "o sk" 'toggle-shell-pop-autocd
+    (kbd "b C-b") 'bury-buffer
+    ;; shouldn't be here
+    (kbd "b C-d") 'diff-current-layout
     )
 
   (with-eval-after-load 'shell
@@ -809,6 +867,7 @@ before packages are loaded."
   ;; used only to insert an linefeed without indenting a new line.
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (setq electric-indent-mode nil)
+  (setq create-lockfiles nil)
 
   ;; Display "OMG WE'RE OUTSIDE OF THE PROJECT AND WE'RE ALL GONNA DIE" message
   ;; as a warning instead of popping up a whole fucking window just to tell me that
@@ -816,9 +875,28 @@ before packages are loaded."
 
   ;; Use widely supported shell instead of my own zsh
   (setenv "ESHELL" "bash")
+  ;; also, =~/.profile= seems to be sourced as well
+  (setenv "WORKON_HOME" (concat (getenv "HOME") "/.virtualenvs"))
+  (setenv "RIPGREP_CONFIG_PATH" (concat (getenv "HOME") "/.rgrc"))
+  ;; end TODO
 
   (add-to-load-path "~/.spacemacs.d/")
   (load "prodigy-services")
+  (load ".spacemacs.local")
+
+  ;; Eliminate after you're done w/ OVH scanners
+  (load "/home/a-kostyuk/develop/ovh_odoo/update-ovh.el")
+  (evil-leader/set-key (kbd "o vh p") 'ovh-push-scenario)
+  (evil-leader/set-key (kbd "o vh f") 'ovh-pull-scenario)
+  ;; rofles tekken out of control
+  ;; (evil-leader/set-key (kbd "o vh Whiskey Tango Foxtrot") 'ovh-pull-scenario)
+
+  ;; OK, let's proceed to `org-jira' configuration.
+  (with-eval-after-load 'org-jira
+    (setq jiralib-url "https://jira.camptocamp.com"
+          org-jira-working-dir "~/org/jira"
+          )
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -833,7 +911,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

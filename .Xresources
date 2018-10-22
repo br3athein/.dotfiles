@@ -37,7 +37,7 @@ XTerm*vt100*geometry: 80x60
 XTerm*saveLines: 16384
 XTerm*loginShell: true
 XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-XTerm*termName: xterm-color
+XTerm*termName: rxvt-unicode-256color
 XTerm*eightBitInput: false
 
 URxvt*depth: 32
@@ -71,7 +71,7 @@ URxvt*scrollTtyKeypress: true
 ! URxvt*scrollBar_right: true
 ! URxvt*scrollColor: _colorIT
 
-URxvt*termName: xterm-color
+URxvt*termName: rxvt-unicode-256color
 ! URxvt*perl-ext:
 URxvt*perl-ext-common: default,clipboard,selection-to-clipboard,matcher
 
