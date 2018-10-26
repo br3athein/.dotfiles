@@ -816,7 +816,11 @@ before packages are loaded."
       (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
       (message "pop-shell autocd mode: %s" shell-pop-autocd-to-working-dir))
     (evil-leader/set-key "o sk" 'toggle-shell-pop-autocd)
-    (evil-set-initial-state 'term-mode 'emacs))
+    (evil-set-initial-state 'term-mode 'emacs)
+    (add-hook 'term-load-hook
+      (lambda ()
+        (define-key term-raw-map (kbd "C-'") 'spacemacs/default-pop-shell)
+        `term-char-mode)))
 
   ;; Disable strange 'new' feature
   ;; seems like `electric-indent-mode' belongs to vanilla Emacs solely and is
