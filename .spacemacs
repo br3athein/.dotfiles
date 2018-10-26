@@ -570,15 +570,25 @@ before packages are loaded."
     )
 
   ;; `o' prefix
-  (spacemacs/declare-prefix "o" "user binds")
+  (spacemacs/declare-prefix "o" "user binds" "User-specific keybinds")
+  (spacemacs/declare-prefix "ot" "toggles" "User-specific toggles")
+  (spacemacs/declare-prefix "om" "mode toggles" "User-specific mode toggles")
+
+  ;; Consider giving names to sections in case of populating those
   (evil-leader/set-key
-    "o gs" 'magit-save-repository-buffers
-    "o ib" 'ispell-buffer
+    "o f" 'recover-this-file
+    "o g" 'magit-save-repository-buffers
+    "o i" 'ispell-buffer
+    "o s" 'sql-connect
+
+    ;; Mode toggles
     "o mc" 'evil-mc-mode
     "o mm" 'minimap-mode
-    "o sc" 'sql-connect
-    "o st" 'toggle-shell-pop-autocd
-    "o fr" 'recover-this-file
+
+    ;; Toggles
+    "o tc" 'centered-cursor-mode
+    "o td" 'toggle-debug-on-error
+    "o ts" 'toggle-shell-pop-autocd
     )
 
   ;; Global (or close to global) userbinds
