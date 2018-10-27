@@ -679,7 +679,16 @@ before packages are loaded."
 
   (with-eval-after-load 'treemacs
     (treemacs-git-mode 'simple)
-    (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?))
+    ;; do not show .gitignored files - this is a project scope file manager,
+    ;; in comparison to general purpose Deer/Ranger/Dired/whatever.
+    (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?)
+    ;; additionally, hide commonly used tech names (this list here is to be extended)
+    ;; since `treemacs-pre-file-insert-predicates' doesn't really handle empty dirs
+    (defvar my-treemacs-ignored-file-names
+      '(".gitkeep" ".mypy_cache" ".ropeproject" "__pytest__")
+      "List of complete file (or directory) names to be always ignored by Treemacs.")
+    (add-to-list 'treemacs-ignored-file-predicates
+                 (lambda (filename _) (member filename my-treemacs-ignored-file-names))))
 
   (with-eval-after-load 'treemacs-projectile
     (define-key evil-normal-state-map (kbd "<C-f8>") 'treemacs-projectile))
