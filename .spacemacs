@@ -582,28 +582,6 @@ before packages are loaded."
     "jp" 'dumb-jump-go-prompt
     )
 
-  ;; `o' prefix
-  (spacemacs/declare-prefix "o" "user binds" "User-specific keybinds")
-  (spacemacs/declare-prefix "ot" "toggles" "User-specific toggles")
-  (spacemacs/declare-prefix "om" "mode toggles" "User-specific mode toggles")
-
-  ;; Consider giving names to sections in case of populating those
-  (evil-leader/set-key
-    "o f" 'recover-this-file
-    "o g" 'magit-save-repository-buffers
-    "o i" 'ispell-buffer
-    "o s" 'sql-connect
-
-    ;; Mode toggles
-    "o mc" 'evil-mc-mode
-    "o mm" 'minimap-mode
-
-    ;; Toggles
-    "o tc" 'centered-cursor-mode
-    "o td" 'toggle-debug-on-error
-    "o ts" 'toggle-shell-pop-autocd
-    )
-
   ;; Global (or close to global) userbinds
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
   ;; we're rebinding ~s~ to `magit-status' in the very next section
@@ -805,6 +783,18 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     (setq-local minimap-window-location 'right)
     )
 
+  (with-eval-after-load 'shell
+    (defun toggle-shell-pop-autocd ()
+      (interactive)
+      (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
+      (message "pop-shell autocd mode: %s" shell-pop-autocd-to-working-dir))
+    (evil-leader/set-key "o sk" 'toggle-shell-pop-autocd)
+    (evil-set-initial-state 'term-mode 'emacs)
+    (add-hook 'term-load-hook
+              (lambda ()
+                (define-key term-raw-map (kbd "C-'") 'spacemacs/default-pop-shell)
+                `term-char-mode)))
+
   ;; Self-authored helper defuns
   ;; Launch diff on currently selected buffers - still WIP
   (defun diff-current-layout ()
@@ -825,20 +815,29 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   (evil-leader/set-key
     "b C-d" 'diff-current-layout
     "t t" 'touchpad-toggle
-    "o sk" 'toggle-shell-pop-autocd
     )
 
-  (with-eval-after-load 'shell
-    (defun toggle-shell-pop-autocd ()
-      (interactive)
-      (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
-      (message "pop-shell autocd mode: %s" shell-pop-autocd-to-working-dir))
-    (evil-leader/set-key "o sk" 'toggle-shell-pop-autocd)
-    (evil-set-initial-state 'term-mode 'emacs)
-    (add-hook 'term-load-hook
-      (lambda ()
-        (define-key term-raw-map (kbd "C-'") 'spacemacs/default-pop-shell)
-        `term-char-mode)))
+  ;; `o' prefix
+  (spacemacs/declare-prefix "o" "user binds" "User-specific keybinds")
+  (spacemacs/declare-prefix "ot" "toggles" "User-specific toggles")
+  (spacemacs/declare-prefix "om" "mode toggles" "User-specific mode toggles")
+
+  ;; Consider giving names to sections in case of populating those
+  (evil-leader/set-key
+    "o f" 'recover-this-file
+    "o g" 'magit-save-repository-buffers
+    "o i" 'ispell-buffer
+    "o s" 'sql-connect
+
+    ;; Mode toggles
+    "o mc" 'evil-mc-mode
+    "o mm" 'minimap-mode
+
+    ;; Toggles
+    "o tc" 'centered-cursor-mode
+    "o td" 'toggle-debug-on-error
+    "o ts" 'toggle-shell-pop-autocd
+    )
 
   ;; Disable strange 'new' feature
   ;; seems like `electric-indent-mode' belongs to vanilla Emacs solely and is
