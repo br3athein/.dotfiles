@@ -715,16 +715,6 @@ before packages are loaded."
   (with-eval-after-load 'org
     ;; load org-projectile ASAP, we need it to build an informative agenda
     (require 'org-projectile)
-    ;; XXX: the whole block would be a purely dead code after switching to
-    ;; functioned agenda (the latter is TBD).
-    ;; Source `org-projectile-files' in `org-agenda' buffers.
-    ;; ignores `org-projectile' TODOs.org files created after Emacs is initialized.
-    ;; Not a major issue tho, refresh can be easily triggered by calling
-    ;; `dotspacemacs/sync-configuration-layers', which is bound to =SPC f e R=.
-    (mapcar (lambda (projectile-todo-file)
-              (when (file-exists-p projectile-todo-file)
-                (add-to-list 'org-agenda-files projectile-todo-file t)))
-            (org-projectile-todo-files))
 
     ;; Expand list of possible task states
     (setq org-todo-keywords
@@ -783,7 +773,9 @@ before packages are loaded."
           (lambda (project-path)
             (concat (my-extract-deepest-directory-name project-path) ".org"))
           org-projectile-projects-directory
-          (concat (expand-file-name org-directory) "/projectile/"))
+          (concat (file-name-as-directory (expand-file-name org-directory))
+                  (file-name-as-directory "projectile")))
+    (add-to-list 'org-agenda-files org-projectile-projects-directory)
     )
 
   (with-eval-after-load 'org-agenda
