@@ -765,6 +765,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
             ("j" "Journal entry (usage is discouraged)" entry (file+datetree "~/org/journal/journal.org")
              "%^G* %<%R> %?\n")
             )))
+
     ;; `org-clocktable' configuration
     ;; basically, purpose is to ignore zero-length timelogs and agenda
     ;; files w/ no timelogs in the scope
