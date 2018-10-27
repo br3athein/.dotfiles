@@ -68,6 +68,7 @@ This function should only modify configuration layer settings."
      sphinx
      (treemacs :variables
                treemacs-use-follow-mode nil
+               treemacs-lock-width t
                treemacs-use-filewatch-mode t)
 
      ;; Languages
