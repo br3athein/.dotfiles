@@ -544,13 +544,25 @@ before packages are loaded."
   (spacemacs/toggle-smartparens-globally-on)
   (spacemacs/toggle-mode-line-org-clock-on)
   (spaceline-toggle-minor-modes-off)
+  (evil-goggles-mode)
 
-  (setq-default word-wrap t
-                truncate-lines t
-                create-lockfiles nil
-                vim-style-remap-Y-to-y$ t
-                vim-style-visual-feedback t
-                )
+  (setq-default
+   word-wrap t
+   truncate-lines t
+   create-lockfiles nil
+
+   ;; u know what? I don't care about `customize-set-variable'
+   ;; THIS works:
+   dotspacemacs-remap-Y-to-y$ t
+   ;; THIS doesn't:
+   ;  vim-style-remap-Y-to-y$ t
+
+   ;; thus the new interface is broken.
+   ;; Same applies to `vim-style-visual-feedback'.
+   ;; Relying on `evil-goggles-mode' above.
+   ;  vim-style-visual-feedback t
+   )
+
 
   ;; Custom binds
   (evil-leader/set-key
