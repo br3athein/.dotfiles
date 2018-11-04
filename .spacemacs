@@ -577,7 +577,6 @@ before packages are loaded."
     "fet" #'dotspacemacs/test-dotfile
 
     ;; Treemacs hate zone
-    "ft" 'treemacs-find-file
     "fT" nil
     "f C-t" nil
 
