@@ -803,11 +803,32 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     )
 
   (with-eval-after-load 'shell
-    (defun toggle-shell-pop-autocd ()
-      (interactive)
-      (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
+    (defun toggle-shell-pop-autocd (arg)
+      "Toggle value of `shell-pop-autocd-to-working-dir', effectively freezing term's cwd.
+
+Surely, user can alter cwd by any possible means, via 'cd', for
+instance, this just prevents automatic re-setting cwd to current
+directory on every issued call to `spacemacs/default-pop-shell'.
+Accepts a prefix argument in case the goal is to set this feature
+in one call: negative argument disables it, positive - enables."
+      (interactive "p")
+      (if (when arg t)
+          (setq shell-pop-autocd-to-working-dir (> arg 0))
+        (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir)))
       (message "pop-shell autocd mode: %s" shell-pop-autocd-to-working-dir))
+
+    ;; shortcuts for the above
+    (defun toggle-shell-pop-autocd-on ()
+      (toggle-shell-pop-autocd 1))
+    (defun toggle-shell-pop-autocd-off ()
+      (toggle-shell-pop-autocd -1))
+
+    ;; bind it
     (evil-leader/set-key "o sk" #'toggle-shell-pop-autocd)
+
+    ;; finally, disable this by default
+    (toggle-shell-pop-autocd-off)
+
     (evil-set-initial-state 'term-mode 'emacs)
     (add-hook 'term-load-hook
               (lambda ()
