@@ -862,7 +862,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   ;; seems like `electric-indent-mode' belongs to vanilla Emacs solely and is
   ;; used only to insert an linefeed without indenting a new line.
   ;; However, here in Spacemacs, I'd like to use indentation by default.
-  (setq electric-indent-mode nil)
+  (electric-indent-mode -1)
 
   ;; Display "OMG WE'RE OUTSIDE OF THE PROJECT AND WE'RE ALL GONNA DIE" message
   ;; as a warning instead of popping up a whole fucking window just to tell me that
