@@ -661,7 +661,6 @@ before packages are loaded."
   (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'python-mode-hook 'spacemacs/toggle-camel-case-motion-on)
 
-  (add-hook 'nxml-mode-hook 'spacemacs/toggle-line-numbers-on)
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
 
