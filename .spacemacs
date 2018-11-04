@@ -590,6 +590,8 @@ before packages are loaded."
   (global-set-key (kbd "<f8>") #'treemacs)
 
   ;; `magit' customization
+  ;; kbds are defined outside of `with-eval-after-load' block since it's preferred to use
+  ;; listed `magit' features right away, before those are even known to Emacs
   (define-key evil-normal-state-map (kbd "s") #'magit-status)
   (define-key evil-normal-state-map (kbd "S") #'magit-dispatch-popup)
   (with-eval-after-load 'magit
