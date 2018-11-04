@@ -864,6 +864,12 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   ;; However, here in Spacemacs, I'd like to use indentation by default.
   (electric-indent-mode -1)
 
+  ;; `j' is prone to self-insert consequently in `evil-normal-state'
+  ;; originally bound to `spacemacs//auto-completion-key-sequence-start'
+  ;; no clue what that is, but the approach is in effect ¯\_(ツ)_/¯
+  (with-eval-after-load 'company
+   (define-key company-active-map "j" nil))
+
   ;; Display "OMG WE'RE OUTSIDE OF THE PROJECT AND WE'RE ALL GONNA DIE" message
   ;; as a warning instead of popping up a whole fucking window just to tell me that
   (setq lsp-message-project-root-warning t)
