@@ -50,6 +50,7 @@ This function should only modify configuration layer settings."
      ;; and they seem to clash w/ each other, as far as I'm concerned
      github
      lsp
+     multiple-cursors
      nginx
      pdf
      prodigy
