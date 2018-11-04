@@ -582,6 +582,12 @@ before packages are loaded."
     "jp" #'dumb-jump-go-prompt
     )
 
+  ;; which-major-mode-should-I-use?
+  (add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
+  ;; use smth more specific to templates than `php-mode', which doesn't suit
+  ;; well for .blade templates, despite the .php extension
+  (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
+
   ;; Global (or close to global) userbinds
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
   ;; we're rebinding ~s~ to `magit-status' in the very next section
