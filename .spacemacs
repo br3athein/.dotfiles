@@ -45,6 +45,7 @@ This function should only modify configuration layer settings."
      docker
      ibuffer
      imenu-list
+     ipython-notebook
      ;; do u really need two GH frontends are being provided in parallel?
      ;; `github' layer provides both `magithub' and `magit-gh-pulls' packages,
      ;; and they seem to clash w/ each other, as far as I'm concerned
@@ -75,7 +76,6 @@ This function should only modify configuration layer settings."
 
      ;; Languages
      html
-     ipython-notebook
      javascript
      lua
      (python :variables
