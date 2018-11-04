@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
              ranger-override-dired t
              ranger-override-dired-mode t
              ranger-cleanup-on-disable t)
+     restclient
      restructuredtext
      (semantic :disabled-for emacs-lisp
                :variables
@@ -131,8 +132,10 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      po-mode
+     geben
      minimap
      org-jira
+     vue-mode
      (org-projectile :location "~/.spacemacs.d/customized-packages/org-projectile")
      )
    ;; A list of packages that cannot be updated.
@@ -651,6 +654,9 @@ before packages are loaded."
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
 
+  ;; speaking of which,..
+  (spacemacs/set-leader-keys-for-major-mode 'php-mode (kbd "d b") 'geben)
+
   (with-eval-after-load 'emmet-mode
     (define-key emmet-mode-keymap (kbd "C-M-j") 'nil)
     (define-key emmet-mode-keymap (kbd "C-j") 'nil)
@@ -666,14 +672,18 @@ before packages are loaded."
   (add-hook 'csv-mode-hook (lambda () (csv-align-fields nil 1 (point-max))))
   (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'python-mode-hook 'spacemacs/toggle-camel-case-motion-on)
+  (add-hook 'php-mode-hook 'spacemacs/toggle-camel-case-motion-on)
 
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
 
   (with-eval-after-load 'web-mode
     (add-hook 'web-mode-hook 'turn-on-smartparens-mode)
-    (setq-default web-mode-markup-indent-offset 2)
-    )
+    (setq-default
+     web-mode-markup-indent-offset 2
+     web-mode-engines-alist
+     '(("php" . "\\.phtml\\'")
+       ("blade" . "\\.blade\\."))))
 
   (with-eval-after-load 'treemacs
     (treemacs-git-mode 'simple)
@@ -686,7 +696,8 @@ before packages are loaded."
       '(".gitkeep" ".mypy_cache" ".ropeproject" "__pytest__")
       "List of complete file (or directory) names to be always ignored by Treemacs.")
     (add-to-list 'treemacs-ignored-file-predicates
-                 (lambda (filename _) (member filename my-treemacs-ignored-file-names))))
+                 (lambda (filename _) (member filename my-treemacs-ignored-file-names)))
+    (treemacs--setup-icon treemacs-icon-php "~/.spacemacs.d/treemacs-additional-icons/php.png" "php"))
 
   (with-eval-after-load 'treemacs-projectile
     (define-key evil-normal-state-map (kbd "<C-f8>") 'treemacs-projectile))
