@@ -567,19 +567,19 @@ before packages are loaded."
 
   ;; Custom binds
   (evil-leader/set-key
-    "`" 'treemacs-select-window
-    "aDa" 'docker-container-shell
-    "b C-r" 'rename-buffer
-    "bl" 'buffer-menu-other-window
-    "fet" 'dotspacemacs/test-dotfile
+    "`" #'treemacs-select-window
+    "aDa" #'docker-container-shell
+    "b C-r" #'rename-buffer
+    "bl" #'buffer-menu-other-window
+    "fet" #'dotspacemacs/test-dotfile
 
     ;; Treemacs hate zone
     "ft" 'treemacs-find-file
     "fT" nil
     "f C-t" nil
 
-    "jQ" 'dumb-jump-go-other-window
-    "jp" 'dumb-jump-go-prompt
+    "jQ" #'dumb-jump-go-other-window
+    "jp" #'dumb-jump-go-prompt
     )
 
   ;; Global (or close to global) userbinds
@@ -587,11 +587,11 @@ before packages are loaded."
   ;; we're rebinding ~s~ to `magit-status' in the very next section
   ;; ~S~ seems to overlap w/ ~s~ - basically does the same thing
   (define-key evil-visual-state-map (kbd "S") 'evil-Surround-region)
-  (global-set-key (kbd "<f8>") 'treemacs)
+  (global-set-key (kbd "<f8>") #'treemacs)
 
   ;; `magit' customization
-  (define-key evil-normal-state-map (kbd "s") 'magit-status)
-  (define-key evil-normal-state-map (kbd "S") 'magit-dispatch-popup)
+  (define-key evil-normal-state-map (kbd "s") #'magit-status)
+  (define-key evil-normal-state-map (kbd "S") #'magit-dispatch-popup)
   (with-eval-after-load 'magit
     ;; load `magithub' ASAP, so one shouldn't trigger the load of it manually
     (require 'magithub)
@@ -752,8 +752,8 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     (org-clock-persistence-insinuate)
 
     ;; Allow setting priorities on TODOs in `org-mode'
-    (evil-leader/set-key-for-mode 'org-mode (kbd "i #") 'org-priority)
-    (evil-leader/set-key-for-mode 'org-mode (kbd "C R") 'org-evaluate-time-range)
+    (evil-leader/set-key-for-mode 'org-mode (kbd "i #") #'org-priority)
+    (evil-leader/set-key-for-mode 'org-mode (kbd "C R") #'org-evaluate-time-range)
 
     ;; might serve as a handy helper someday...
     (defun my-extract-deepest-directory-name (file-or-directory-path)
@@ -788,7 +788,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
       (interactive)
       (setq shell-pop-autocd-to-working-dir (not shell-pop-autocd-to-working-dir))
       (message "pop-shell autocd mode: %s" shell-pop-autocd-to-working-dir))
-    (evil-leader/set-key "o sk" 'toggle-shell-pop-autocd)
+    (evil-leader/set-key "o sk" #'toggle-shell-pop-autocd)
     (evil-set-initial-state 'term-mode 'emacs)
     (add-hook 'term-load-hook
               (lambda ()
@@ -813,8 +813,8 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
   ;; Bind that homemade stuff somewhere
   ;; Bring it on home \m/
   (evil-leader/set-key
-    "b C-d" 'diff-current-layout
-    "t t" 'touchpad-toggle
+    "b C-d" #'diff-current-layout
+    "t t" #'touchpad-toggle
     )
 
   ;; `o' prefix
@@ -824,19 +824,19 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
 
   ;; Consider giving names to sections in case of populating those
   (evil-leader/set-key
-    "o f" 'recover-this-file
-    "o g" 'magit-save-repository-buffers
-    "o i" 'ispell-buffer
-    "o s" 'sql-connect
+    "o f" #'recover-this-file
+    "o g" #'magit-save-repository-buffers
+    "o i" #'ispell-buffer
+    "o s" #'sql-connect
 
     ;; Mode toggles
-    "o mc" 'evil-mc-mode
-    "o mm" 'minimap-mode
+    "o mc" #'evil-mc-mode
+    "o mm" #'minimap-mode
 
     ;; Toggles
-    "o tc" 'centered-cursor-mode
-    "o td" 'toggle-debug-on-error
-    "o ts" 'toggle-shell-pop-autocd
+    "o tc" #'centered-cursor-mode
+    "o td" #'toggle-debug-on-error
+    "o ts" #'toggle-shell-pop-autocd
     )
 
   ;; Disable strange 'new' feature
