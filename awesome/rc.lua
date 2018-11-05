@@ -109,6 +109,7 @@ launchmenu = {
    { "Firefox", "firefox" },
    { "qutebrowser", "qutebrowser" },
    { "Slack", "slack" },
+   { "GPMDP", "gpmdp" },
 }
 
 mainmenu = awful.menu({
