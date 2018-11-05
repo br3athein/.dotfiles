@@ -130,4 +130,22 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zen
 -- }}}
 -- }}}
 
+-- {{{ Notifications
+theme.notification_fg = theme.fg_focus
+theme.notification_margin = 10
+
+-- FIXME: NTH, couldn't get it done tho
+-- goal: set up notification shape
+-- local cairo = require("lgi").cairo
+-- local gears = require("gears")
+-- local img = cairo.ImageSurface.create(cairo.Format.ARGB32, 700, 200)
+-- local cr = cairo.Context(img)
+-- theme.notification_shape = gears.infobubble(cr, 700, 200)
+
+theme.notification_height = 150
+theme.notification_width = 700
+theme.notification_border_width = 3
+theme.notification_border_color = theme.border_normal
+-- }}}
+
 return theme
