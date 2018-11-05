@@ -1,0 +1,20 @@
+# -*- mode: gitignore -*-
+
+# usually are shared via Dropbox or alike, if shared at all
+# shouldn't be version-controlled unless stated otherwise
+TODOs.org
+
+# various Python build artifacts
+.mypy_cache/
+__pycache__/
+.ropeproject/
+# pretty obvious
+*.py[cod]
+
+# venv anchors
+.venv
+venv
+
+# various PHP artifacts
+.ac-php-conf.json
+.tern-port
