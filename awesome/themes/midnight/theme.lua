@@ -31,7 +31,6 @@ theme.fg_systray = theme.fg_focus
 -- }}}
 
 -- {{{ Borders
--- an ugly color for invisible borders
 theme.border_width  = 1
 theme.border_normal = "#1f3d6d"
 theme.border_focus  = "#1f3d6d"
