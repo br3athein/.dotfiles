@@ -27,4 +27,5 @@ run compton --config /home/br3athein/.compton.conf
 # kick off apps in background
 run gpmdp
 run telegram-desktop
+run slack
 run unclutter -root  # doesn't play really well w/ awesome, thus xperimental

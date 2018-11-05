@@ -108,6 +108,7 @@ mylaunchmenu = {
    { "Spacemacs", "spacemacs"},
    { "Firefox", "firefox" },
    { "qutebrowser", "qutebrowser" },
+   { "Slack", "slack" },
 }
 
 mymainmenu = awful.menu({
@@ -197,7 +198,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     awful.tag({
-        "", "", "", "", "", "", "", "", "", "",
+        "", "", "", "", "", "", "", "", "", "",
               }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
@@ -581,6 +582,7 @@ awful.rules.rules = {
   } }, properties = { screen = 1, tag = tags[ 8] } },
   { rule_any = { class = {
         "Steam",
+        "Slack",
   } }, properties = { screen = 1, tag = tags[ 9] } },
   { rule_any = { class = {
         "TelegramDesktop",
