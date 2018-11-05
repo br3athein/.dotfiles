@@ -686,6 +686,8 @@ before packages are loaded."
     (define-key evil-treemacs-state-map (kbd "K")
       (lambda () (interactive) (treemacs-previous-line 10)))
 
+    ;; strangely enough, `simple' `treemacs-git-mode' is the key for sourcing .gitignore
+    ;; files, yet git awareness remains fully operational, despite the mode simpliness
     (treemacs-git-mode 'simple)
     ;; do not show .gitignored files - this is a project scope file manager,
     ;; in comparison to general purpose Deer/Ranger/Dired/whatever.
