@@ -597,6 +597,8 @@ before packages are loaded."
   ;; ~S~ seems to overlap w/ ~s~ - basically does the same thing
   (define-key evil-visual-state-map (kbd "S") 'evil-Surround-region)
   (global-set-key (kbd "<f8>") #'treemacs)
+  ;; FIXME: `treemacs-projectile' tends to fail silently if called b4 `treemacs' in a session
+  (global-set-key (kbd "<C-f8>") #'treemacs-projectile)
 
   ;; `magit' customization
   ;; kbds are defined outside of `with-eval-after-load' block since it's preferred to use
@@ -700,9 +702,6 @@ before packages are loaded."
     (add-to-list 'treemacs-ignored-file-predicates
                  (lambda (filename _) (member filename my-treemacs-ignored-file-names)))
     (treemacs--setup-icon treemacs-icon-php "~/.spacemacs.d/treemacs-additional-icons/php.png" "php"))
-
-  (with-eval-after-load 'treemacs-projectile
-    (define-key evil-normal-state-map (kbd "<C-f8>") 'treemacs-projectile))
 
   ;; Navigation through HELM
   (with-eval-after-load 'helm
