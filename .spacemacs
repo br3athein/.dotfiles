@@ -898,10 +898,24 @@ in one call: negative argument disables it, positive - enables."
 
   ;; Use widely supported shell instead of my own zsh
   (setenv "ESHELL" "bash")
-
-  (add-to-load-path "~/.spacemacs.d/")
+  (add-to-load-path dotspacemacs-directory)
   (load "prodigy-services")
-  )
+
+  ;; Secrets.
+  ;; The whole mess w/ private.d is to hold sensitive stuff outside of version
+  ;; control while keeping track of a private directory itself.
+
+  ;; load everything in ~/.spacemacs.d/private.d
+  ;; Yup, I was too damn lazy to require this properly, so I've just snatched a
+  ;; snippet from EmacsWiki. Feel free to consult the given URL for details.
+  ;; https://www.emacswiki.org/emacs/LoadingLispFiles
+  ;; Just b4 u ask - sure thing that snippet was adjusted.
+  (defun load-directory (dir)
+    ;; Faaaaaaaeeency. `let'-local function.
+    ;; Such scope. Much flexibility. Wow.
+    (-let [load-it (lambda (f) (load-file (concat (file-name-as-directory dir) f)))]
+	    (mapc load-it (directory-files dir nil "\\.el$"))))
+  (load-directory (f-join dotspacemacs-directory (file-name-as-directory "private.d"))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
