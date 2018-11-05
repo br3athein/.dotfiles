@@ -12,7 +12,7 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = "/home/br3athein/Pictures/Wallpapers/mountain-glow.png"
+theme.wallpaper = "/home/br3athein/Pictures/Wallpapers/current"
 -- }}}
 
 -- {{{ Styles
