@@ -560,7 +560,7 @@ awful.rules.rules = {
 
   -- Exclusive rule
   { rule = { class = "Emacs"         },
-    properties = { screen = 1, tag = tags[ 3],
+    properties = {             tag = tags[ 3],
                    maximized = true } },
 
   { rule_any = { class = {
