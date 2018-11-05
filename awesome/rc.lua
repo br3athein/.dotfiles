@@ -96,7 +96,7 @@ end
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+awesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -104,23 +104,23 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end},
 }
 
-mylaunchmenu = {
+launchmenu = {
    { "Spacemacs", "spacemacs"},
    { "Firefox", "firefox" },
    { "qutebrowser", "qutebrowser" },
    { "Slack", "slack" },
 }
 
-mymainmenu = awful.menu({
+mainmenu = awful.menu({
     items = {
-      { "launch...", mylaunchmenu, beautiful.awesome_icon },
-      { "awesome", myawesomemenu, beautiful.awesome_icon },
+      { "launch...", launchmenu, beautiful.awesome_icon },
+      { "awesome", awesomemenu, beautiful.awesome_icon },
     }
 })
 
 mylauncher = awful.widget.launcher({
     image = beautiful.awesome_icon,
-    menu = mymainmenu,
+    menu = mainmenu,
 })
 
 -- Menubar configuration
@@ -252,7 +252,7 @@ end)
 -- {{{ Mouse bindings
 root.buttons(
   gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function () mainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -285,7 +285,7 @@ globalkeys = gears.table.join(
         function () awful.client.focus.byidx(-1) end,
               {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, ";", function () mymainmenu:show() end,
+    awful.key({ modkey,           }, ";", function () mainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
