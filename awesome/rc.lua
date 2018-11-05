@@ -366,7 +366,9 @@ globalkeys = gears.table.join(
 
     -- Screenshots
     awful.key({ }, "Print",         function ()
-        awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end),
+        -- also, is overridden w/ a ~/.local/bin/scrot scripty,
+        -- which stores stuff in ~/Pictures/Screenshots
+        awful.util.spawn("scrot", false) end),
 
     -- Prompt
     awful.key({ modkey },            "d",     function () awful.screen.focused().mypromptbox:run() end,

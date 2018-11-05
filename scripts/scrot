@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+/usr/bin/scrot $@ ~/Pictures/Screenshots/scrot-$(date +%F-T%H%M%S.png)
