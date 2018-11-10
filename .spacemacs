@@ -616,22 +616,6 @@ before packages are loaded."
     (define-key magit-log-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
     (magit-add-section-hook
      'magit-status-sections-hook 'magit-insert-ignored-files nil t)
-
-    ;; Adding section "Ignored files" to Magit
-    ;; Command to list ignored files:
-    ;; $ git ls-files --others --ignored --exclude-standard --directory
-    (defun magit-ignored-files ()
-      (magit-git-items
-       "ls-files" "--others" "--ignored" "-z"
-       "--exclude-standard" "--directory"))
-
-    (defun magit-insert-ignored-files ()
-      (-when-let (files (magit-ignored-files))
-        (magit-insert-section (ignored nil t)
-          (magit-insert-heading "Ignored files:")
-          (magit-insert-files files nil)
-          (insert ?\n))))
-
     )
 
   ;; Same applies to `Buffer-menu-mode'
