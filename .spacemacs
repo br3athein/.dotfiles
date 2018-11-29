@@ -920,10 +920,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ediff-current-diff-B ((t (:background "dark green"))))
+ '(ediff-current-diff-C ((t (:background "dark magenta"))))
  '(ediff-even-diff-A ((t (:background "gray25"))))
  '(ediff-even-diff-B ((t (:background "grey20"))))
  '(ediff-even-diff-C ((t (:background "gray25"))))
  '(ediff-fine-diff-B ((t (:background "#114422"))))
+ '(ediff-fine-diff-C ((t (:background "dark violet"))))
  '(ediff-odd-diff-A ((t (:background "gray20"))))
  '(ediff-odd-diff-B ((t (:background "gray25"))))
  '(ediff-odd-diff-C ((t (:background "gray20"))))
