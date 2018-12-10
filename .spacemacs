@@ -937,5 +937,6 @@ This function is called at the very end of Spacemacs initialization."
  '(hi-yellow ((t (:background "dark slate blue" :foreground "light goldenrod"))))
  '(lsp-face-highlight-read ((t (:background "dark slate blue"))))
  '(lsp-face-highlight-write ((t (:background "MediumOrchid4"))))
+ '(org-agenda-dimmed-todo-face ((t (:foreground "cyan"))))
  '(treemacs-git-modified-face ((t (:inherit font-lock-variable-name-face :foreground "deep sky blue")))))
 )
