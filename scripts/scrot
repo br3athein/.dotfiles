@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-/usr/bin/scrot $@ ~/Pictures/Screenshots/scrot-$(date +%F-T%H%M%S.png)
+timestamp=$(date +%F-T%H%M%S)
+tsname="$HOME/Pictures/Screenshots/scrot-$timestamp.png"
+/usr/bin/scrot "$tsname"
+notify-send "Screenshot saved as $tsname."
