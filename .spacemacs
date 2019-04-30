@@ -606,6 +606,7 @@ before packages are loaded."
   ;; use smth more specific to templates than `php-mode', which doesn't suit
   ;; well for .blade templates, despite the .php extension
   (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
+  (load "~/.spacemacs.d/php-helpers.el")
 
   ;; Global (or close to global) userbinds
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
@@ -652,8 +653,13 @@ before packages are loaded."
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
 
-  ;; speaking of which,..
-  (spacemacs/set-leader-keys-for-major-mode 'php-mode (kbd "d b") 'geben)
+  ;; and, as we're tampering w/ PHP here...
+  ;; FTR, this is not the proper place tor this hunk
+  ;; I-I guess I'll rewrite the whole config someday... yuuup, someday. Some other day.
+  (spacemacs/set-leader-keys-for-major-mode 'php-mode
+    "tr" #'ac-php-remake-tags-all
+    "yy" #'php-current-full-qualified-class
+    )
 
   (with-eval-after-load 'emmet-mode
     (define-key emmet-mode-keymap (kbd "C-M-j") 'nil)
@@ -670,6 +676,7 @@ before packages are loaded."
   (add-hook 'csv-mode-hook (lambda () (csv-align-fields nil 1 (point-max))))
   (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'python-mode-hook 'spacemacs/toggle-camel-case-motion-on)
+  (add-hook 'php-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
   (add-hook 'php-mode-hook 'spacemacs/toggle-camel-case-motion-on)
 
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
