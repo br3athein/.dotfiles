@@ -148,11 +148,9 @@ alias reload='exec zsh'
 alias py2='ipython2'
 alias py3='ipython3'
 
-prompt_context() {
-    if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-        prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-    fi
-}
+alias pp=' ping -c 4 archlinux.org'
+alias wp=' watch network-state'
+alias pdiag=' journalctl -xefu netctl-auto@wlp3s0.service'
 
 # Read stuff like a gangster
 alias jxe='journalctl -xe'
@@ -167,8 +165,19 @@ alias dral='docker run --rm -it base/archlinux:latest'
 # Docker: resolve IP
 alias drip='docker inspect --format='\''{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'\'
 
+# Docker && Docker-Compose
+alias drm='docker run --rm -it'
+alias dcrm='docker-compose run --rm'
+
 # Multihead setups
 alias multihead-left='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --left-of eDP-1'
 alias multihead-right='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --right-of eDP-1'
+# Finally, search through aliases
+alias sally=' alias | ag'
+
+
+alias gsss='git submodule sync && git submodule update --init'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export UID GID
