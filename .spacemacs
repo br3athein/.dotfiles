@@ -896,11 +896,8 @@ in one call: negative argument disables it, positive - enables."
     "o ts" #'toggle-shell-pop-autocd
     )
 
-  ;; Disable strange 'new' feature
-  ;; seems like `electric-indent-mode' belongs to vanilla Emacs solely and is
-  ;; used only to insert an linefeed without indenting a new line.
-  ;; However, here in Spacemacs, I'd like to use indentation by default.
-  (electric-indent-mode -1)
+  ;; Always indent on `C-j'
+  (define-key evil-normal-state-map (kbd "C-j") #'newline-and-indent)
 
   ;; `j' is prone to self-insert consequently in `evil-normal-state'
   ;; originally bound to `spacemacs//auto-completion-key-sequence-start'
