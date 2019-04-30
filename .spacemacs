@@ -576,6 +576,12 @@ before packages are loaded."
    ;; Same applies to `vim-style-visual-feedback'.
    ;; Relying on `evil-goggles-mode' above.
    ;  vim-style-visual-feedback t
+
+   ;; now, to PHP config.
+   php-mode-coding-style 'psr2
+   php-project-coding-style 'psr2
+
+   sh-basic-offset 2
    )
 
 
