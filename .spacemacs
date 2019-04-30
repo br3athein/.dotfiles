@@ -681,6 +681,7 @@ before packages are loaded."
 
   (add-hook 'git-commit-mode-hook 'spacemacs/toggle-spelling-checking-on)
   (add-hook 'po-mode-hook (lambda () (read-only-mode -1)))
+  (add-hook 'snippet-mode-hook (lambda () (sp-local-pair 'snippet-mode "'" nil :actions nil)))
 
   (with-eval-after-load 'web-mode
     (add-hook 'web-mode-hook 'turn-on-smartparens-mode)
