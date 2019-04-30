@@ -1,8 +1,22 @@
 # -*- mode: gitignore -*-
 
+### SYSTEM-LOCAL
+
 # usually are shared via Dropbox or alike, if shared at all
 # shouldn't be version-controlled unless stated otherwise
 TODOs.org
+
+# Emacs stuff
+.dir-locals.el
+TAGS
+
+# manual .projectile markers
+.projectile
+
+# comes as a part of Emacs' php-mode
+.ac-php-conf.json
+
+### GENERAL
 
 # various Python build artifacts
 .mypy_cache/
@@ -15,6 +29,12 @@ __pycache__/
 .venv
 venv
 
-# various PHP artifacts
-.ac-php-conf.json
 .tern-port
+
+# tribute to every dumbass Mac-running dev who keeps forgetting
+# to mention this crap in a blacklist. Please, go ahead now.
+.DS_Store
+
+*.http
+
+.psysh.php
