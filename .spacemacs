@@ -53,6 +53,7 @@ This function should only modify configuration layer settings."
      lsp
      multiple-cursors
      nginx
+     pass
      pdf
      prodigy
      (ranger :variables
@@ -75,6 +76,8 @@ This function should only modify configuration layer settings."
                treemacs-use-filewatch-mode t)
 
      ;; Languages
+     (haskell :variables
+              haskell-process-type 'stack-ghci)
      html
      javascript
      lua
@@ -132,13 +135,12 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     po-mode
-     geben
+     ;; geben ;; is being integrated into upstream's `php' layer
+     ;; geben-helm-projectile-file
      minimap
-     org-jira
      vue-mode
-     (org-projectile :location "~/.spacemacs.d/customized-packages/org-projectile")
      )
+
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
