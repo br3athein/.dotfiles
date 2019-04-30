@@ -522,7 +522,11 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+  ;; for `prodigy' combined w/ `docker-compose' to run stuff as myself
+  (setenv "UID" (number-to-string (user-uid)))
+  (setenv "GID" (number-to-string (group-gid)))
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
