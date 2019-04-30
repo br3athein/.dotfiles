@@ -1,4 +1,5 @@
 -- Standard awesome library
+
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
@@ -97,19 +98,24 @@ end
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 awesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end},
+  { "hotkeys", function() return false, hotkeys_popup.show_help end},
+  { "manual", terminal .. " -e man awesome" },
+  { "edit config", editor_cmd .. " " .. awesome.conffile },
+  { "restart", awesome.restart },
+  { "quit", function() awesome.quit() end},
+}
+
+browsersmenu = {
+  { "Firefox", "firefox" },
+  { "qutebrowser", "qutebrowser" },
+  { "Chrome", "google-chrome-stable" },
 }
 
 launchmenu = {
-   { "Spacemacs", "spacemacs"},
-   { "Firefox", "firefox" },
-   { "qutebrowser", "qutebrowser" },
-   { "Slack", "slack" },
-   { "GPMDP", "gpmdp" },
+  { "browsers", browsersmenu },
+  { "Spacemacs", "spacemacs"},
+  { "Slack", "slack" },
+  { "GPMDP", "gpmdp" },
 }
 
 mainmenu = awful.menu({
