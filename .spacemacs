@@ -566,17 +566,6 @@ before packages are loaded."
    truncate-lines t
    create-lockfiles nil
 
-   ;; u know what? I don't care about `customize-set-variable'
-   ;; THIS works:
-   dotspacemacs-remap-Y-to-y$ t
-   ;; THIS doesn't:
-   ;  vim-style-remap-Y-to-y$ t
-
-   ;; thus the new interface is broken.
-   ;; Same applies to `vim-style-visual-feedback'.
-   ;; Relying on `evil-goggles-mode' above.
-   ;  vim-style-visual-feedback t
-
    ;; now, to PHP config.
    php-mode-coding-style 'psr2
    php-project-coding-style 'psr2
