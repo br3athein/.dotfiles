@@ -10,6 +10,8 @@
 -- Alternative icon sets and widget icons:
 --  * https://gabriela2400.deviantart.com/art/Arch-Linux-Start-Icons-175557586
 
+local gears = require("gears")
+
 -- {{{ Main
 theme = {}
 theme.wallpaper = "/home/br3athein/Pictures/Wallpapers/current"
@@ -129,22 +131,21 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zen
 -- }}}
 -- }}}
 
+-- {{{ Taglist
+-- just in time, thx
+theme.taglist_font = "Font Awesome 5 Free Regular"
+-- }}}
+
 -- {{{ Notifications
+theme.notification_shape = gears.shape.rounded_rect
 theme.notification_fg = theme.fg_focus
-theme.notification_margin = 10
-
--- FIXME: NTH, couldn't get it done tho
--- goal: set up notification shape
--- local cairo = require("lgi").cairo
--- local gears = require("gears")
--- local img = cairo.ImageSurface.create(cairo.Format.ARGB32, 700, 200)
--- local cr = cairo.Context(img)
--- theme.notification_shape = gears.infobubble(cr, 700, 200)
-
 theme.notification_height = 150
 theme.notification_width = 700
-theme.notification_border_width = 3
-theme.notification_border_color = theme.border_normal
+theme.notification_border_color = "#8b008b"
+
+-- documented features, but having no effect whatsoever
+theme.notification_margin = 10
+theme.notification_border_width = 30
 -- }}}
 
 return theme
