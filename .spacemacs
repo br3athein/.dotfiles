@@ -111,7 +111,7 @@ This function should only modify configuration layer settings."
           org-enable-org-journal-support t
           org-journal-dir "~/org/journal/"
           org-journal-file-format "%Y-%m-%d.org"
-          ;; org-projectile-file (concat (getenv "HOME") "/org/projectile/")
+          org-projectile-projects-directory (concat (getenv "HOME") "/org/projectile/")
           org-pomodoro-format "🍅 %s"
           org-agenda-files '("~/org/"))
      (shell :variables
@@ -789,22 +789,13 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     (evil-leader/set-key-for-mode 'org-mode (kbd "i #") #'org-priority)
     (evil-leader/set-key-for-mode 'org-mode (kbd "C R") #'org-evaluate-time-range)
 
-    ;; might serve as a handy helper someday...
-    (defun my-extract-deepest-directory-name (file-or-directory-path)
-      "Return a basename of a directory that is deepest in a given path."
-      ;; TODO: doesn't validate whether a given param is really a filename
-      (file-name-nondirectory (directory-file-name (file-name-directory file-or-directory-path))))
-
     ;; reasoning is questionable, worked w/o this
     (org-projectile-per-project-strategy)
 
-    ;; necessary, used to distinct per-project filenames (root dir name, usually)
     (setq org-projectile-per-project-filepath
           (lambda (project-path)
-            (concat (my-extract-deepest-directory-name project-path) ".org"))
-          org-projectile-projects-directory
-          (concat (file-name-as-directory (expand-file-name org-directory))
-                  (file-name-as-directory "projectile")))
+            (concat (projectile-project-name project-path) ".org")))
+
     (add-to-list 'org-agenda-files org-projectile-projects-directory)
     )
 
