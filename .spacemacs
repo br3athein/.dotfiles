@@ -553,6 +553,7 @@ before packages are loaded."
   (spacemacs/enable-transparency)
   (spacemacs/toggle-smartparens-globally-on)
   (spacemacs/toggle-mode-line-org-clock-on)
+  (spacemacs/toggle-camel-case-motion-globally-on)
   (spaceline-toggle-minor-modes-off)
   (evil-goggles-mode)
 
