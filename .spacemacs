@@ -614,7 +614,7 @@ before packages are loaded."
   ;; kbds are defined outside of `with-eval-after-load' block since it's preferred to use
   ;; listed `magit' features right away, before those are even known to Emacs
   (define-key evil-normal-state-map (kbd "s") #'magit-status)
-  (define-key evil-normal-state-map (kbd "S") #'magit-dispatch-popup)
+  (define-key evil-normal-state-map (kbd "S") #'magit-dispatch)
   (with-eval-after-load 'magit
     ;; load `magithub' ASAP, so one shouldn't trigger the load of it manually
     (require 'magithub)
@@ -626,6 +626,8 @@ before packages are loaded."
     (define-key magit-log-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
     (magit-add-section-hook
      'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+
+    (transient-bind-q-to-quit)
     )
 
   ;; Same applies to `Buffer-menu-mode'
