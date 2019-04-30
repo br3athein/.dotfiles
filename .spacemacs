@@ -864,7 +864,9 @@ in one call: negative argument disables it, positive - enables."
     "o f" #'recover-this-file
     "o g" #'magit-save-repository-buffers
     "o i" #'ispell-buffer
+    "o r" #'ranger-kill-buffers-without-window
     "o s" #'sql-connect
+    "o p" #'org-pomodoro
 
     ;; Mode toggles
     "o mc" #'evil-mc-mode
