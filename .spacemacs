@@ -849,6 +849,8 @@ in one call: negative argument disables it, positive - enables."
               (lambda ()
                 (define-key term-raw-map (kbd "C-'") 'spacemacs/default-pop-shell)
                 `term-char-mode)))
+  ;; unify binds - add the same to regular binds
+  (define-key evil-normal-state-map (kbd "C-'") 'spacemacs/default-pop-shell)
 
   ;; Self-authored helper defuns
   ;; Launch diff on currently selected buffers - still WIP
