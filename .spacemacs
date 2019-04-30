@@ -613,7 +613,8 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "S") #'magit-dispatch)
   (with-eval-after-load 'magit
     ;; load `magithub' ASAP, so one shouldn't trigger the load of it manually
-    (require 'magithub)
+    ;; FIXME: disabled for the time being
+    ;; (require 'magithub)
     ;; Simplify navigation in `magit-log-mode'
     ;; XXX: could be nice to use those, but they're shadowed by forces of `evil'
     ;; (define-key magit-log-mode-map (kbd "j") 'magit-section-forward)
