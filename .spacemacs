@@ -745,7 +745,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     (setq org-todo-keywords
           '((sequence "TODO(t)" "WIP(s)" "REVIEW(i)" "|" "DONE(d)")
             (sequence "REPORT(r)" "BUG(b)" "KNOWNC(k)" "|" "FIXED(f)")
-            (type "LOCKED(l)" "|" "CANCEL(c)" "PASSED(p)"))
+            (type "LOCKED(l)" "|" "CANCEL(c)" "ABNDND(x)" "PASSED(p)"))
           org-clock-persist t
           org-clock-idle-time 10
           org-enforce-todo-checkbox-dependencies t
@@ -756,7 +756,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
             ("REPORT" . (:foreground "goldenrod"))
             ("BUG" . (:foreground "tomato"))
             ("KNOWNC" . (:foreground "MediumSlateBlue"))
-            ("LOCKED" . (:foreground "firebrick"))
+            ("LOCKED" . (:foreground "orange red"))
             ("CANCEL" . (:foreground "pink")))
           org-capture-templates
           (quote
@@ -764,13 +764,17 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
              "")
             ("g" "General" entry (file "~/org/general.org")
              "")
+            ("i" "Idea" entry (file "~/org/ideas.org")
+             "")
             ("G" "General (clock in)" entry (file "~/org/general.org")
              "" :clock-in t :clock-resume t)
             ("t" "Task" entry (file "~/org/journal/landing-bay.org")
              "* TODO %^{Generic name} %?\n")
-            ("r" "Catchall for reviews" entry (file "~/org/reviews.org")
-             "* Review %^{PR link}" :clock-in t :clock-resume t :prepend t)
-            ("j" "Journal entry (usage is discouraged)" entry (file+datetree "~/org/journal/journal.org")
+            ;; gone right after extensive time tracking @ C2C
+            ;; goodnight, sweet prince
+            ;; ("r" "Catchall for reviews" entry (file "~/org/reviews.org")
+            ;;  "* Review %^{PR link}" :clock-in t :clock-resume t :prepend t)
+            ("j" "Journal entry (discouraged)" entry (file+datetree "~/org/journal/journal.org")
              "%^G* %<%R> %?\n")
             )))
 
