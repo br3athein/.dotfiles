@@ -180,4 +180,8 @@ alias gsss='git submodule sync && git submodule update --init'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# vterm@emacs does not seem to play well w/ RET key
+# so we're gonna hack into fzf itself and rebind accept action
+export FZF_DEFAULT_OPTS="--bind=ctrl-l:accept"
+
 export UID GID
