@@ -117,7 +117,8 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-height '30
             shell-default-position 'bottom
-            shell-default-shell 'ansi-term
+            shell-default-shell 'vterm
+            shell-default-term-shell "zsh"
             shell-enable-smart-eshell 't
             shell-protect-eshell-prompt 't)
      (spell-checking :variables
@@ -825,12 +826,13 @@ in one call: negative argument disables it, positive - enables."
     ;; finally, disable this by default
     (toggle-shell-pop-autocd-off)
 
-    (evil-set-initial-state 'term-mode 'emacs)
-    (add-hook 'term-load-hook
-              (lambda ()
-                (define-key term-raw-map (kbd "C-'") 'spacemacs/default-pop-shell)
-                `term-char-mode)))
-  ;; unify binds - add the same to regular binds
+  (with-eval-after-load 'vterm
+    ;; XXX: fixing this on a shell@spacemacs side for the time being
+    ;; (remove-hook 'shell-pop-in-after-hook #'evil-insert-state)
+    (evil-set-initial-state 'vterm-mode 'emacs)
+    (define-key vterm-mode-map (kbd "C-'") 'spacemacs/default-pop-shell)
+    (define-key vterm-mode-map (kbd "C-u") 'vterm--self-insert))
+
   (define-key evil-normal-state-map (kbd "C-'") 'spacemacs/default-pop-shell)
 
   ;; Self-authored helper defuns
