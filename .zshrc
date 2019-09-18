@@ -2,12 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+autoload -U promptinit; promptinit
+prompt spaceship
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -47,14 +48,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Store cache at home
-ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose archlinux virtualenvwrapper)
+plugins=(fzf git docker docker-compose archlinux virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,6 +72,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Gotta use vim anyways.
 export EDITOR='vim'
+alias vi='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -83,15 +82,6 @@ export EDITOR='vim'
 
 # Set up default shell user
 DEFAULT_USER=br3athein
-
-# Start an SSH agent
-. ssh-find-agent.sh
-ssh-find-agent -a
-if [ -z "$SSH_AUTH_SOCK" ]
-then
-   eval $(ssh-agent) > /dev/null
-   ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
-fi
 
 # Customize `spaceship` theme
 SPACESHIP_DIR_PREFIX=''
@@ -173,8 +163,7 @@ alias dcrm='docker-compose run --rm'
 alias multihead-left='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --left-of eDP-1'
 alias multihead-right='xrandr --output eDP-1 --auto --output DP-1 --auto --primary --right-of eDP-1'
 # Finally, search through aliases
-alias sally=' alias | ag'
-
+alias sally=' alias | rg'
 
 alias gsss='git submodule sync && git submodule update --init'
 
