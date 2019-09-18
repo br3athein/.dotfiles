@@ -58,10 +58,9 @@ This function should only modify configuration layer settings."
      prodigy
      restclient
      restructuredtext
-     (semantic :disabled-for emacs-lisp
-               :variables
-               semantic-idle-scheduler-queue '(semantic-fetch-tags)
-               )
+
+     (semantic :variables
+               semantic-idle-scheduler-queue '(semantic-fetch-tags))
      sphinx
      (treemacs :variables
                treemacs-use-follow-mode nil
