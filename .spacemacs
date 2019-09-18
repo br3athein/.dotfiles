@@ -800,7 +800,7 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     )
 
   (with-eval-after-load 'shell
-    (defun toggle-shell-pop-autocd (arg)
+    (defun toggle-shell-pop-autocd (&optional arg)
       "Toggle value of `shell-pop-autocd-to-working-dir', effectively freezing term's cwd.
 
 Surely, user can alter cwd by any possible means, via 'cd', for
@@ -824,7 +824,7 @@ in one call: negative argument disables it, positive - enables."
     (evil-leader/set-key "o sk" #'toggle-shell-pop-autocd)
 
     ;; finally, disable this by default
-    (toggle-shell-pop-autocd-off)
+    (toggle-shell-pop-autocd-off))
 
   (with-eval-after-load 'vterm
     ;; XXX: fixing this on a shell@spacemacs side for the time being
