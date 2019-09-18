@@ -18,7 +18,7 @@ theme.wallpaper = "/home/br3athein/Pictures/Wallpapers/current"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "xos4 terminess powerline 12" -- i fairly doubt it would work everywhere.
+theme.font      = "Terminus (TTF)"
 
 -- {{{ Colors
 theme.fg_normal  = "#1f3d6d"
