@@ -90,13 +90,12 @@ This function should only modify configuration layer settings."
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-snippets-in-popup t
-                      auto-completion-complete-with-key-sequence "jk"
+                      auto-completion-complete-with-key-sequence nil
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip 'manual)
      better-defaults
      emacs-lisp
      (git :variables
-          git-magit-status-fullscreen t
           git-commit-fill-column 72
           magit-save-repository-buffers 'dontask)
      markdown
@@ -281,7 +280,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro for Powerline"
+   dotspacemacs-default-font '("Source Code Pro"
                                :size 15
                                :weight normal
                                :width normal)
@@ -340,7 +339,7 @@ It should only modify the values of Spacemacs settings."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'original
+   dotspacemacs-auto-save-file-location 'cache
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
@@ -383,7 +382,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
@@ -553,7 +552,7 @@ before packages are loaded."
   (spacemacs/toggle-mode-line-org-clock-on)
   (spacemacs/toggle-camel-case-motion-globally-on)
   (spaceline-toggle-minor-modes-off)
-  (evil-goggles-mode)
+  (evil-goggles-mode 1)
 
   (setq-default
    word-wrap t
@@ -566,7 +565,6 @@ before packages are loaded."
 
    sh-basic-offset 2
    )
-
 
   ;; Custom binds
   (evil-leader/set-key
@@ -589,7 +587,6 @@ before packages are loaded."
   ;; use smth more specific to templates than `php-mode', which doesn't suit
   ;; well for .blade templates, despite the .php extension
   (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
-  (load "~/.spacemacs.d/php-helpers.el")
 
   ;; Global (or close to global) userbinds
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
@@ -611,19 +608,17 @@ before packages are loaded."
     ;; (require 'magithub)
     ;; Simplify navigation in `magit-log-mode'
     ;; XXX: could be nice to use those, but they're shadowed by forces of `evil'
-    ;; (define-key magit-log-mode-map (kbd "j") 'magit-section-forward)
-    ;; (define-key magit-log-mode-map (kbd "k") 'magit-section-backward)
-    (define-key magit-log-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
+    ;; (define-key magit-log-mode-map (kbd "k") #'magit-section-backward)
+    ;; (define-key magit-log-mode-map (kbd "j") #'magit-section-forward)
     (define-key magit-log-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
-    (magit-add-section-hook
-     'magit-status-sections-hook 'magit-insert-ignored-files nil t)
+    (define-key magit-log-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
 
     (transient-bind-q-to-quit)
     )
 
   ;; Same applies to `Buffer-menu-mode'
-  (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
   (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
+  (define-key Buffer-menu-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
 
   ;; Unbind n/N keys in `Buffer-menu-mode-map' to allow searching things
   (define-key Buffer-menu-mode-map (kbd "n") nil)
@@ -632,14 +627,6 @@ before packages are loaded."
   ;; Launch external Python debugger when in `python-mode'
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
-
-  ;; and, as we're tampering w/ PHP here...
-  ;; FTR, this is not the proper place tor this hunk
-  ;; I-I guess I'll rewrite the whole config someday... yuuup, someday. Some other day.
-  (spacemacs/set-leader-keys-for-major-mode 'php-mode
-    "tr" #'ac-php-remake-tags-all
-    "yy" #'php-current-full-qualified-class
-    )
 
   (with-eval-after-load 'emmet-mode
     (define-key emmet-mode-keymap (kbd "C-M-j") 'nil)
@@ -673,10 +660,10 @@ before packages are loaded."
 
   (with-eval-after-load 'treemacs
     ;; enhanced navigation (tho I barely ever use it, thankfully to ace jumps)
-    (define-key evil-treemacs-state-map (kbd "J")
-      (lambda () (interactive) (treemacs-next-line 10)))
     (define-key evil-treemacs-state-map (kbd "K")
       (lambda () (interactive) (treemacs-previous-line 10)))
+    (define-key evil-treemacs-state-map (kbd "J")
+      (lambda () (interactive) (treemacs-next-line 10)))
 
     ;; strangely enough, `simple' `treemacs-git-mode' is the key for sourcing .gitignore
     ;; files, yet git awareness remains fully operational, despite the mode simpliness
@@ -690,8 +677,7 @@ before packages are loaded."
       '(".gitkeep" ".mypy_cache" ".ropeproject" "__pytest__")
       "List of complete file (or directory) names to be always ignored by Treemacs.")
     (add-to-list 'treemacs-ignored-file-predicates
-                 (lambda (filename _) (member filename my-treemacs-ignored-file-names)))
-    (treemacs--setup-icon treemacs-icon-php "~/.spacemacs.d/treemacs-additional-icons/php.png" "php"))
+                 (lambda (filename _) (member filename my-treemacs-ignored-file-names))))
 
   ;; Navigation through HELM
   (with-eval-after-load 'helm
@@ -826,7 +812,9 @@ in one call: negative argument disables it, positive - enables."
     (define-key vterm-mode-map (kbd "C-'") 'spacemacs/default-pop-shell)
     (define-key vterm-mode-map (kbd "C-u") 'vterm--self-insert))
 
+  ;; unify binds - add the same to regular state binds
   (define-key evil-normal-state-map (kbd "C-'") 'spacemacs/default-pop-shell)
+  (define-key evil-insert-state-map (kbd "C-'") 'spacemacs/default-pop-shell)
 
   ;; Self-authored helper defuns
   ;; Launch diff on currently selected buffers - still WIP
@@ -904,7 +892,7 @@ in one call: negative argument disables it, positive - enables."
     ;; Faaaaaaaeeency. `let'-local function.
     ;; Such scope. Much flexibility. Wow.
     (-let [load-it (lambda (f) (load-file (concat (file-name-as-directory dir) f)))]
-	    (mapc load-it (directory-files dir nil "\\.el$"))))
+      (mapc load-it (directory-files dir nil "\\.el$"))))
   (load-directory (f-join dotspacemacs-directory (file-name-as-directory "private.d"))))
 
 ;; Do not write anything past this comment. This is where Emacs will
