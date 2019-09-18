@@ -56,13 +56,6 @@ This function should only modify configuration layer settings."
      pass
      pdf
      prodigy
-     (ranger :variables
-             ranger-show-preview t
-             ranger-show-literal nil
-             ranger-parent-depth 0
-             ranger-override-dired t
-             ranger-override-dired-mode t
-             ranger-cleanup-on-disable t)
      restclient
      restructuredtext
      (semantic :disabled-for emacs-lisp
@@ -636,10 +629,6 @@ before packages are loaded."
   (define-key Buffer-menu-mode-map (kbd "n") nil)
   (define-key Buffer-menu-mode-map (kbd "N") nil)
 
-  ;; Bring more of native ranger to `ranger-mode'
-  (define-key ranger-mode-map (kbd "TAB") 'ranger-next-tab)
-  (define-key ranger-mode-map (kbd "<backtab>") 'ranger-prev-tab)
-
   ;; Launch external Python debugger when in `python-mode'
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d t" 'trepan2)
   (spacemacs/set-leader-keys-for-major-mode 'python-mode "d T" 'trepan3k)
@@ -693,7 +682,7 @@ before packages are loaded."
     ;; files, yet git awareness remains fully operational, despite the mode simpliness
     (treemacs-git-mode 'simple)
     ;; do not show .gitignored files - this is a project scope file manager,
-    ;; in comparison to general purpose Deer/Ranger/Dired/whatever.
+    ;; in comparison to general purpose Dired.
     (add-to-list 'treemacs-pre-file-insert-predicates #'treemacs-is-file-git-ignored?)
     ;; additionally, hide commonly used tech names (this list here is to be extended)
     ;; since `treemacs-pre-file-insert-predicates' doesn't really handle empty dirs
@@ -727,6 +716,10 @@ If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
     (add-to-list 'projectile-globally-ignored-directories ".ropeproject")
     (add-to-list 'projectile-globally-ignored-directories ".mypy_cache")
     )
+
+  (with-eval-after-load 'dired
+    (add-hook 'dired-mode-hook
+              (lambda () (dired-sort-other "-al --group-directories-first"))))
 
   (with-eval-after-load 'org
     ;; load org-projectile ASAP, we need it to build an informative agenda
@@ -867,7 +860,6 @@ in one call: negative argument disables it, positive - enables."
     "o f" #'recover-this-file
     "o g" #'magit-save-repository-buffers
     "o i" #'ispell-buffer
-    "o r" #'ranger-kill-buffers-without-window
     "o s" #'sql-connect
     "o p" #'org-pomodoro
 
