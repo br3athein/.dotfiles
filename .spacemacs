@@ -102,9 +102,9 @@ This function should only modify configuration layer settings."
           org-enable-org-journal-support t
           org-journal-dir "~/org/journal/"
           org-journal-file-format "%Y-%m-%d.org"
-          org-projectile-projects-directory (concat (getenv "HOME") "/org/projectile/")
+          org-projectile-projects-directory (concat user-home-directory "org/projectile/")
           org-pomodoro-format "🍅 %s"
-          org-agenda-files '("~/org/"))
+          org-agenda-files (list (concat user-home-directory "org/")))
      (shell :variables
             shell-default-height '30
             shell-default-position 'bottom
