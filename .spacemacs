@@ -802,6 +802,7 @@ in one call: negative argument disables it, positive - enables."
     ;; (remove-hook 'shell-pop-in-after-hook #'evil-insert-state)
     (evil-set-initial-state 'vterm-mode 'emacs)
     (define-key vterm-mode-map (kbd "C-'") 'spacemacs/default-pop-shell)
+    (define-key vterm-mode-map (kbd "C-h") 'vterm--self-insert)
     (define-key vterm-mode-map (kbd "C-u") 'vterm--self-insert))
 
   ;; unify binds - add the same to regular state binds
