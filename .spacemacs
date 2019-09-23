@@ -860,7 +860,9 @@ in one call: negative argument disables it, positive - enables."
   ;; originally bound to `spacemacs//auto-completion-key-sequence-start'
   ;; no clue what that is, but the approach is in effect ¯\_(ツ)_/¯
   (with-eval-after-load 'company
-   (define-key company-active-map "j" nil))
+    (define-key company-active-map "j" nil)
+    (define-key evil-normal-state-map (kbd "<C-return>") #'company-complete)
+    (define-key evil-insert-state-map (kbd "<C-return>") #'company-complete))
 
   ;; Display "OMG WE'RE OUTSIDE OF THE PROJECT AND WE'RE ALL GONNA DIE" message
   ;; as a warning instead of popping up a whole fucking window just to tell me that
