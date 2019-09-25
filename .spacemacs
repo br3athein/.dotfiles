@@ -681,7 +681,14 @@ before packages are loaded."
   ;; Navigation through HELM
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-p") 'helm-previous-page)
-    (define-key helm-map (kbd "C-n") 'helm-next-page))
+    (define-key helm-map (kbd "C-n") 'helm-next-page)
+    ;; kudos to @PanarinM for finding this one
+    (defun helm-persistent-action-display-window (&optional split-onewindow)
+      "Return the window that will be used for persistent action.
+If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
+      (with-helm-window
+        (setq helm-persistent-action-display-window (get-mru-window))))
+    )
 
   ;; `helm-ag' improvements
   (with-eval-after-load 'helm-ag
