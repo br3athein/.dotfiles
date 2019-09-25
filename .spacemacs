@@ -606,14 +606,14 @@ before packages are loaded."
     ;; FIXME: disabled for the time being
     ;; (require 'magithub)
     ;; Simplify navigation in `magit-log-mode'
-    ;; XXX: could be nice to use those, but they're shadowed by forces of `evil'
-    ;; (define-key magit-log-mode-map (kbd "k") #'magit-section-backward)
-    ;; (define-key magit-log-mode-map (kbd "j") #'magit-section-forward)
-    (define-key magit-log-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
-    (define-key magit-log-mode-map (kbd "J") (lambda () (interactive) (forward-line 10)))
-
-    (transient-bind-q-to-quit)
-    )
+    (evil-define-key 'normal magit-log-mode-map
+      (kbd "k") #'magit-section-backward
+      (kbd "j") #'magit-section-forward
+      (kbd "K") (lambda () (interactive) (forward-line -10))
+      (kbd "J") (lambda () (interactive) (forward-line 10))
+      (kbd "C-k") #'evil-previous-line
+      (kbd "C-j") #'evil-next-line)
+    (transient-bind-q-to-quit))
 
   ;; Same applies to `Buffer-menu-mode'
   (define-key Buffer-menu-mode-map (kbd "K") (lambda () (interactive) (forward-line -10)))
