@@ -63,7 +63,7 @@ This function should only modify configuration layer settings."
                semantic-idle-scheduler-queue '(semantic-fetch-tags))
      sphinx
      (treemacs :variables
-               treemacs-use-follow-mode nil
+               treemacs-follow-mode nil
                treemacs-lock-width t
                treemacs-use-filewatch-mode t)
 
@@ -843,7 +843,7 @@ in one call: negative argument disables it, positive - enables."
 
   ;; Consider giving names to sections in case of populating those
   (evil-leader/set-key
-    "o f" #'recover-this-file
+    "o f" #'treemacs-find-file
     "o g" #'magit-save-repository-buffers
     "o i" #'ispell-buffer
     "o s" #'sql-connect
