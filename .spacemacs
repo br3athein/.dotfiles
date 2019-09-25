@@ -696,6 +696,11 @@ before packages are loaded."
     )
 
   (with-eval-after-load 'dired
+    (evilified-state-evilify-map dired-mode-map
+      :bindings
+      "h" #'dired-up-directory
+      "l" #'dired-find-file)
+    (evil-set-initial-state 'dired-mode 'evilified)
     (add-hook 'dired-mode-hook
               (lambda () (dired-sort-other "-al --group-directories-first"))))
 
