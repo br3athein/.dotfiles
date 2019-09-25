@@ -865,6 +865,10 @@ in one call: negative argument disables it, positive - enables."
     (define-key evil-normal-state-map (kbd "<C-return>") #'company-complete)
     (define-key evil-insert-state-map (kbd "<C-return>") #'company-complete))
 
+  (with-eval-after-load 'proced
+    (evilified-state-evilify-map proced-mode-map)
+    (evil-set-initial-state 'proced-mode 'evilified))
+
   ;; Display "OMG WE'RE OUTSIDE OF THE PROJECT AND WE'RE ALL GONNA DIE" message
   ;; as a warning instead of popping up a whole fucking window just to tell me that
   (setq lsp-message-project-root-warning t)
