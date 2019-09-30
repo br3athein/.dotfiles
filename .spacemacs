@@ -812,14 +812,16 @@ in one call: negative argument disables it, positive - enables."
   (use-package vterm
     ;; XXX: fixing this on a shell@spacemacs side for the time being
     ;; (remove-hook 'shell-pop-in-after-hook #'evil-insert-state)
+    :bind
+    (:map vterm-mode-map
+          ("C-'"   . #'spacemacs/default-pop-shell)
+          ;; vterm tends to react to Shift-Spaces inadequatly, avoid that
+          ("S-SPC" . " ")
+          ("C-h"   . #'vterm--self-insert)
+          ("C-u"   . #'vterm--self-insert))
     :config
     (progn
-      (evil-set-initial-state 'vterm-mode 'emacs)
-      (define-key vterm-mode-map (kbd "C-'") 'spacemacs/default-pop-shell)
-      ;; vterm tends to react to Shift-Spaces inadequatly, avoid that
-      (define-key vterm-mode-map (kbd "S-SPC") " ")
-      (define-key vterm-mode-map (kbd "C-h") 'vterm--self-insert)
-      (define-key vterm-mode-map (kbd "C-u") 'vterm--self-insert)))
+      (evil-set-initial-state 'vterm-mode 'emacs)))
 
   ;; unify binds - add the same to regular state binds
   (define-key evil-normal-state-map (kbd "C-'") 'spacemacs/default-pop-shell)
