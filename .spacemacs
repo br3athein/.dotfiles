@@ -809,13 +809,17 @@ in one call: negative argument disables it, positive - enables."
     ;; finally, disable this by default
     (toggle-shell-pop-autocd-off))
 
-  (with-eval-after-load 'vterm
+  (use-package vterm
     ;; XXX: fixing this on a shell@spacemacs side for the time being
     ;; (remove-hook 'shell-pop-in-after-hook #'evil-insert-state)
-    (evil-set-initial-state 'vterm-mode 'emacs)
-    (define-key vterm-mode-map (kbd "C-'") 'spacemacs/default-pop-shell)
-    (define-key vterm-mode-map (kbd "C-h") 'vterm--self-insert)
-    (define-key vterm-mode-map (kbd "C-u") 'vterm--self-insert))
+    :config
+    (progn
+      (evil-set-initial-state 'vterm-mode 'emacs)
+      (define-key vterm-mode-map (kbd "C-'") 'spacemacs/default-pop-shell)
+      ;; vterm tends to react to Shift-Spaces inadequatly, avoid that
+      (define-key vterm-mode-map (kbd "S-SPC") " ")
+      (define-key vterm-mode-map (kbd "C-h") 'vterm--self-insert)
+      (define-key vterm-mode-map (kbd "C-u") 'vterm--self-insert)))
 
   ;; unify binds - add the same to regular state binds
   (define-key evil-normal-state-map (kbd "C-'") 'spacemacs/default-pop-shell)
